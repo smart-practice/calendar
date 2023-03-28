@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import arrowSprite from '../assets/[arrows].svg'
-import logo from '../assets/logo.svg'
+import logo from '../../public/favicon.svg'
 </script>
 
 <template>
   <header class="header">
     <div class="logo">
-      <img class="logo-img" :src="{ logo }" alt="logo" />
+      <img class="logo-img" :src="logo" alt="logo" />
       <p class="logo-text">Календарь</p>
     </div>
     <div class="btn-wrapper">
@@ -30,9 +30,8 @@ import logo from '../assets/logo.svg'
   display: flex;
   align-items: center;
   gap: 30px;
-  height: 48px;
+  padding: 10px 20px;
   width: 100%;
-  padding: 8px;
   background-color: #fff;
   border-bottom: 1px solid #c5c6c7;
 }
@@ -40,7 +39,11 @@ import logo from '../assets/logo.svg'
 .logo {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 30px;
 }
 
 .logo-text {
