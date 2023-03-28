@@ -1,27 +1,11 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <h1>Hello world!</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi
+    dolore enim, est fugiat impedit laudantium maiores necessitatibus nihil
+    officiis placeat quod vero. Aspernatur atque consequatur dolorum ipsa optio
+    veritatis.
+  </p>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
