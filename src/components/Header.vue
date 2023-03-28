@@ -1,58 +1,25 @@
+<script lang="ts" setup>
+import arrowSprite from '../assets/[arrows].svg'
+</script>
+
 <template>
   <header class="header">
     <p class="logo">Календарь</p>
     <div class="btn-wrapper">
       <button class="btn">
-        <svg width="12px" height="12px">
-          <use xlink:href="/[arrow].svg#left"></use>
+        <svg class="svg">
+          <use :href="`${arrowSprite}#default`" />
         </svg>
       </button>
       <button class="btn">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          height="12px"
-          width="12px"
-          viewBox="0 0 128 128"
-        >
-          <g>
-            <line
-              style="
-                fill: none;
-                stroke: #5f6368;
-                stroke-width: 12;
-                stroke-linecap: square;
-                stroke-miterlimit: 10;
-              "
-              x1="40.5"
-              x2="87.5"
-              y1="17"
-              y2="64"
-            />
-            <line
-              style="
-                fill: none;
-                stroke: #5f6368;
-                stroke-width: 12;
-                stroke-linecap: square;
-                stroke-miterlimit: 10;
-              "
-              x1="87.5"
-              x2="40.5"
-              y1="64"
-              y2="111"
-            />
-          </g>
+        <svg :class="{ svg: true, rotate: true }">
+          <use :href="`${arrowSprite}#default`" />
         </svg>
       </button>
     </div>
     <div class="date">Март 2023</div>
   </header>
 </template>
-
-<script>
-export default {}
-</script>
 
 <style lang="scss" scoped>
 .header {
@@ -87,18 +54,28 @@ export default {}
   border: none;
   background-color: #fff;
   border-radius: 50%;
+  transition: background-color 0.2s;
 }
 
 .btn:hover {
   background-color: #efeff0;
-}
 
-.btn svg use {
-  fill: black;
+  .svg {
+    stroke: #868686;
+  }
 }
 
 .date {
   font-size: 24px;
   color: #3c4043;
+}
+
+.svg {
+  stroke: #c5c6c7;
+  transition: stroke 0.2s;
+}
+
+.rotate {
+  transform: rotate(180deg);
 }
 </style>
