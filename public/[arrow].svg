@@ -1,0 +1,35 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg">
+  <symbol id="left" viewBox="0 0 128 128">
+    <g>
+      <line
+        x1="87.5"
+        x2="40.5"
+        y1="111"
+        y2="64"
+      />
+      <line
+        x1="40.5"
+        x2="87.5"
+        y1="64"
+        y2="17"
+      />
+    </g>
+  </symbol>
+  <symbol id="right" viewBox="0 0 128 128" style="transform: rotate(180deg);">
+    <g>
+      <line
+        x1="87.5"
+        x2="40.5"
+        y1="111"
+        y2="64"
+      />
+      <line
+        x1="40.5"
+        x2="87.5"
+        y1="64"
+        y2="17"
+      />
+    </g>
+  </symbol>
+</svg>
