@@ -1,6 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import Header from "./components/Header.vue"
+  components:{
+    Header
+  }
+</script>
 
 <template>
+  <Header></Header>
   <h1>Hello world!</h1>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae commodi
