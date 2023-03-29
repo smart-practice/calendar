@@ -1,6 +1,13 @@
 <script lang="ts" setup>
 import arrowSprite from '../assets/[arrows].svg'
 import logo from '../../public/favicon.svg'
+import Modal from './UI/Modal.vue'
+import { ref } from 'vue'
+
+const dialogVisible = ref(false)
+const showDialog = () => {
+  dialogVisible.value = true
+}
 </script>
 
 <template>
@@ -22,6 +29,8 @@ import logo from '../../public/favicon.svg'
       </button>
     </div>
     <div class="date">Март 2023</div>
+    <button @click="showDialog">Открыть</button>
+    <Modal v-model:show="dialogVisible">Content</Modal>
   </header>
 </template>
 
