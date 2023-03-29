@@ -1,15 +1,11 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
 import Cell from './Cell.vue'
 import { daysOfMonth } from '../utils/date'
 import { weekdays } from '../resources/date'
 
-const { month, year } = defineProps<{ month: number; year: number }>()
+const { year, month } = defineProps<{ month: number; year: number }>()
 
-const data = computed(() => {
-  const date = new Date(year, month)
-  return daysOfMonth(date)
-})
+const data = daysOfMonth(new Date(year, month))
 </script>
 
 <template>

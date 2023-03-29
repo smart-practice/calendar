@@ -12,8 +12,24 @@ const showDialog = () => {
 const year = ref(new Date().getFullYear())
 const month = ref(new Date().getMonth())
 
-const onPrevMonth = () => month.value--
-const onNextMonth = () => month.value++
+const onPrevMonth = () => {
+  if (month.value === 0) {
+    month.value = 11
+    year.value--
+    return
+  }
+
+  month.value--
+}
+const onNextMonth = () => {
+  if (month.value === 11) {
+    month.value = 0
+    year.value++
+    return
+  }
+
+  month.value++
+}
 </script>
 
 <template>
