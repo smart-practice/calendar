@@ -32,6 +32,7 @@ import logo from '../../public/favicon.svg'
   gap: 30px;
   padding: 10px 20px;
   width: 100%;
+  height: var(--header-height);
   background-color: #fff;
   border-bottom: 1px solid #c5c6c7;
 }
