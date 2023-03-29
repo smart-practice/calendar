@@ -1,10 +1,15 @@
-<script setup lang="ts">
+<script lang="ts" setup>
+import { computed } from 'vue'
 import Cell from './Cell.vue'
-import { daysOfMonth, weekdays } from '../utils/date'
+import { daysOfMonth } from '../utils/date'
+import { weekdays } from '../resources/date'
 
-const date = new Date(2023, 2)
+const { month, year } = defineProps<{ month: number; year: number }>()
 
-const data = daysOfMonth(date)
+const data = computed(() => {
+  const date = new Date(year, month)
+  return daysOfMonth(date)
+})
 </script>
 
 <template>
@@ -13,10 +18,10 @@ const data = daysOfMonth(date)
       <Cell v-for="day in weekdays" :key="day">{{ day }}</Cell>
     </div>
     <div role="grid" class="wrapper">
-      <div v-for="row in data" role="row" class="row">
+      <div v-for="(row, index) in data" :key="index" role="row" class="row">
         <Cell
           v-for="item in row"
-          :key="item.num"
+          :key="`${item.num}-${index}`"
           :is-neighbour="item.isNeighbour"
         >
           {{ item.num }}

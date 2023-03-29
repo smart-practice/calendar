@@ -1,5 +1,3 @@
-export const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-
 interface Cell {
   num: number
   isNeighbour?: boolean

@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import arrowSprite from '../assets/[arrows].svg'
 import logo from '../../public/favicon.svg'
+import { months } from '../resources/date'
+
+const { year, month } = defineProps<{ year: number; month: number }>()
 </script>
 
 <template>
@@ -10,18 +13,19 @@ import logo from '../../public/favicon.svg'
       <p class="logo-text">Календарь</p>
     </div>
     <div class="btn-wrapper">
-      <button class="btn">
+      <button class="btn" @click="$emit('prev')">
         <svg class="svg">
           <use :href="`${arrowSprite}#default`" />
         </svg>
       </button>
-      <button class="btn">
+      <button class="btn" @click="$emit('next')">
         <svg :class="{ svg: true, rotate: true }">
           <use :href="`${arrowSprite}#default`" />
         </svg>
       </button>
     </div>
-    <div class="date">Март 2023</div>
+    <div class="date">{{ months[month] }} {{ year }}</div>
+    <button @click="$emit('open')">Open modal</button>
   </header>
 </template>
 
