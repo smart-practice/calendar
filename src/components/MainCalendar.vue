@@ -4,6 +4,14 @@ import { weekdays } from '../resources/date'
 import { useCalendarStore } from '../stores/calendar'
 
 const store = useCalendarStore()
+
+const clickNeighbour = (rowIndex: number) => {
+  if (rowIndex === 0) {
+    store.decrementMonth()
+  } else {
+    store.incrementMonth()
+  }
+}
 </script>
 
 <template>
@@ -17,6 +25,7 @@ const store = useCalendarStore()
           v-for="item in row"
           :key="`${item.num}-${index}`"
           :is-neighbour="item.isNeighbour"
+          @neighbour:click="clickNeighbour(index)"
         >
           {{ item.num }}
         </Cell>

@@ -5,7 +5,11 @@ defineProps<{
 </script>
 
 <template>
-  <div class="cell" :class="{ neighbour: isNeighbour }">
+  <div
+    class="cell"
+    :class="{ neighbour: isNeighbour }"
+    @click="isNeighbour ? $emit('neighbour:click') : $emit('click')"
+  >
     <slot />
   </div>
 </template>
