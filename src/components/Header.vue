@@ -13,7 +13,7 @@ const themeStore = useThemeStore()
   <header class="header">
     <div class="logo">
       <img class="logo-img" :src="logo" alt="logo" />
-      <p class="logo-text">Календарь</p>
+      <p class="logo-text">Calendar</p>
     </div>
     <div class="btn-wrapper">
       <button class="btn" @click="calendarStore.decrementMonth">
