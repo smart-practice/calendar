@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import Cell from './Cell.vue'
-import { daysOfMonth } from '../utils/date'
 import { weekdays } from '../resources/date'
+import { useCalendarStore } from '../stores/calendar'
 
-const { year, month } = defineProps<{ month: number; year: number }>()
-
-const data = daysOfMonth(new Date(year, month))
+const store = useCalendarStore()
 </script>
 
 <template>
@@ -14,7 +12,7 @@ const data = daysOfMonth(new Date(year, month))
       <Cell v-for="day in weekdays" :key="day">{{ day }}</Cell>
     </div>
     <div role="grid" class="wrapper">
-      <div v-for="(row, index) in data" :key="index" role="row" class="row">
+      <div v-for="(row, index) in store.cellDaysOfMonth" role="row" class="row">
         <Cell
           v-for="item in row"
           :key="`${item.num}-${index}`"

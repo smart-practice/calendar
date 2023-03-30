@@ -2,8 +2,9 @@
 import arrowSprite from '../assets/[arrows].svg'
 import logo from '../../public/favicon.svg'
 import { months } from '../resources/date'
+import { useCalendarStore } from '../stores/calendar'
 
-const { year, month } = defineProps<{ year: number; month: number }>()
+const store = useCalendarStore()
 </script>
 
 <template>
@@ -13,18 +14,18 @@ const { year, month } = defineProps<{ year: number; month: number }>()
       <p class="logo-text">Календарь</p>
     </div>
     <div class="btn-wrapper">
-      <button class="btn" @click="$emit('prev')">
+      <button class="btn" @click="store.decrementMonth">
         <svg class="svg">
           <use :href="`${arrowSprite}#default`" />
         </svg>
       </button>
-      <button class="btn" @click="$emit('next')">
+      <button class="btn" @click="store.incrementMonth">
         <svg :class="{ svg: true, rotate: true }">
           <use :href="`${arrowSprite}#default`" />
         </svg>
       </button>
     </div>
-    <div class="date">{{ months[month] }} {{ year }}</div>
+    <div class="date">{{ months[store.month] }} {{ store.year }}</div>
     <button @click="$emit('open')">Open modal</button>
   </header>
 </template>
