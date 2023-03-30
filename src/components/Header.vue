@@ -3,8 +3,10 @@ import arrowSprite from '../assets/[arrows].svg'
 import logo from '../../public/favicon.svg'
 import { months } from '../resources/date'
 import { useCalendarStore } from '../stores/calendar'
+import { useThemeStore } from '../stores/theme'
 
-const store = useCalendarStore()
+const calendarStore = useCalendarStore()
+const themeStore = useThemeStore()
 </script>
 
 <template>
@@ -14,19 +16,23 @@ const store = useCalendarStore()
       <p class="logo-text">Календарь</p>
     </div>
     <div class="btn-wrapper">
-      <button class="btn" @click="store.decrementMonth">
+      <button class="btn" @click="calendarStore.decrementMonth">
         <svg class="svg">
           <use :href="`${arrowSprite}#default`" />
         </svg>
       </button>
-      <button class="btn" @click="store.incrementMonth">
+      <button class="btn" @click="calendarStore.incrementMonth">
         <svg :class="{ svg: true, rotate: true }">
           <use :href="`${arrowSprite}#default`" />
         </svg>
       </button>
     </div>
-    <div class="date">{{ months[store.month] }} {{ store.year }}</div>
+    <div class="date">
+      {{ months[calendarStore.month] }} {{ calendarStore.year }}
+    </div>
     <button @click="$emit('open')">Open modal</button>
+    {{ themeStore.theme }}
+    <button @click="themeStore.toggle">Toggle</button>
   </header>
 </template>
 
@@ -38,8 +44,9 @@ const store = useCalendarStore()
   padding: 10px 20px;
   width: 100%;
   height: var(--header-height);
-  background-color: #fff;
-  border-bottom: 1px solid #c5c6c7;
+  background-color: transparent;
+  border-bottom: 1px solid var(--hairline);
+  transition: border-bottom-color 0.2s;
 }
 
 .logo {
@@ -55,7 +62,8 @@ const store = useCalendarStore()
 .logo-text {
   font-size: 24px;
   text-align: center;
-  color: #3c4043;
+  color: var(--text-color-primary);
+  transition: color 0.2s;
 }
 
 .btn-wrapper {
@@ -71,7 +79,7 @@ const store = useCalendarStore()
   height: 24px;
   padding: 5px;
   border: none;
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 50%;
   transition: background-color 0.2s;
 }
@@ -86,7 +94,8 @@ const store = useCalendarStore()
 
 .date {
   font-size: 24px;
-  color: #3c4043;
+  color: var(--text-color-primary);
+  transition: color 0.2s;
 }
 
 .svg {
