@@ -3,14 +3,40 @@ import { ref } from 'vue'
 
 type Theme = 'light' | 'dark'
 
-export const useThemeStore = defineStore('theme', () => {
-  const theme = ref<Theme>('light')
+const THEME = 'theme'
 
-  const toggle = () => {
-    const value = theme.value === 'dark' ? 'light' : 'dark'
+export const useThemeStore = defineStore('theme', () => {
+  const theme = ref<Theme>()
+
+  const getTheme = () => localStorage.getItem(THEME)
+
+  const setTheme = (value: Theme) => {
+    localStorage.setItem(THEME, value)
     theme.value = value
     document.documentElement.className = value
   }
 
-  return { theme, toggle }
+  const toggleTheme = () => {
+    const activeTheme = localStorage.getItem(THEME) as Theme
+    if (activeTheme === 'light') {
+      setTheme('dark')
+    } else {
+      setTheme('light')
+    }
+  }
+
+  const getMediaPreference = () => {
+    const hasDarkPreference = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches
+
+    return hasDarkPreference ? 'dark' : 'light'
+  }
+
+  const initUserTheme = () => {
+    const initUserTheme = getTheme() || getMediaPreference()
+    setTheme(initUserTheme as Theme)
+  }
+
+  return { theme, toggleTheme, initUserTheme }
 })

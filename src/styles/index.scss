@@ -1,7 +1,7 @@
 @import "global";
 
 :root {
-  --header-height: 50px;
+  --header-height: 64px;
   --weekday-height: 25px;
 }
 
@@ -37,7 +37,8 @@ body {
   font-weight: 400;
   color: var(--text-color-primary);
   background-color: var(--bg-color-primary);
-  transition: color .5s, background-color .5s;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 #app {

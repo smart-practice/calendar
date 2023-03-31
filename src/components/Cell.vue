@@ -6,7 +6,6 @@ defineProps<{
 
 <template>
   <div
-    class="cell"
     :class="{ neighbour: isNeighbour }"
     @click="isNeighbour ? $emit('neighbour:click') : $emit('click')"
   >
@@ -15,10 +14,6 @@ defineProps<{
 </template>
 
 <style scoped>
-.cell {
-  transition: background-color 0.2s;
-}
-
 .neighbour {
   background-color: var(--bg-color-secondary);
   color: #747474;

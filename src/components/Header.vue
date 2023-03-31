@@ -16,12 +16,20 @@ const themeStore = useThemeStore()
       <p class="logo-text">Calendar</p>
     </div>
     <div class="btn-wrapper">
-      <button class="btn" @click="calendarStore.decrementMonth">
+      <button
+        class="btn"
+        @click="calendarStore.decrementMonth"
+        title="Previous month"
+      >
         <svg class="svg">
           <use :href="`${arrowSprite}#default`" />
         </svg>
       </button>
-      <button class="btn" @click="calendarStore.incrementMonth">
+      <button
+        class="btn"
+        @click="calendarStore.incrementMonth"
+        title="Next month"
+      >
         <svg :class="{ svg: true, rotate: true }">
           <use :href="`${arrowSprite}#default`" />
         </svg>
@@ -32,7 +40,7 @@ const themeStore = useThemeStore()
     </div>
     <button @click="$emit('open')">Open modal</button>
     {{ themeStore.theme }}
-    <button @click="themeStore.toggle">Toggle</button>
+    <button @click="themeStore.toggleTheme">Toggle</button>
   </header>
 </template>
 
@@ -46,7 +54,6 @@ const themeStore = useThemeStore()
   height: var(--header-height);
   background-color: transparent;
   border-bottom: 1px solid var(--hairline);
-  transition: border-bottom-color 0.2s;
 }
 
 .logo {
@@ -63,7 +70,6 @@ const themeStore = useThemeStore()
   font-size: 24px;
   text-align: center;
   color: var(--text-color-primary);
-  transition: color 0.2s;
 }
 
 .btn-wrapper {
@@ -81,7 +87,6 @@ const themeStore = useThemeStore()
   border: none;
   background-color: transparent;
   border-radius: 50%;
-  transition: background-color 0.2s;
 }
 
 .btn:hover {
@@ -95,12 +100,10 @@ const themeStore = useThemeStore()
 .date {
   font-size: 24px;
   color: var(--text-color-primary);
-  transition: color 0.2s;
 }
 
 .svg {
   stroke: #c5c6c7;
-  transition: stroke 0.2s;
 }
 
 .rotate {

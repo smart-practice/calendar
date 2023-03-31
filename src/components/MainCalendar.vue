@@ -52,7 +52,6 @@ const clickNeighbour = (rowIndex: number) => {
   display: flex;
   flex: 1 1 auto;
   width: 100%;
-  transition: border-top-color 0.2s;
   border-top: 1px solid var(--hairline);
 }
 
@@ -60,7 +59,6 @@ const clickNeighbour = (rowIndex: number) => {
 .row > * {
   display: flex;
   width: calc(100% / 7);
-  transition: border-right-color 0.2s;
   border-right: 1px solid var(--hairline);
   padding-left: 5px;
 }
