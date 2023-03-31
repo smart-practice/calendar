@@ -4,6 +4,7 @@ import logo from '../../public/favicon.svg'
 import { months } from '../resources/date'
 import { useCalendarStore } from '../stores/calendar'
 import { useThemeStore } from '../stores/theme'
+import Button from './Button.vue'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()
@@ -38,9 +39,11 @@ const themeStore = useThemeStore()
     <div class="date">
       {{ months[calendarStore.month] }} {{ calendarStore.year }}
     </div>
-    <button @click="$emit('open')">Open modal</button>
-    {{ themeStore.theme }}
-    <button @click="themeStore.toggleTheme">Toggle</button>
+    <Button view="outlined" @click="$emit('open')">Open modal</Button>
+
+    <Button view="outlined" @click="themeStore.toggleTheme"
+      >{{ themeStore.theme }}
+    </Button>
   </header>
 </template>
 
