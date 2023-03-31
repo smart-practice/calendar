@@ -8,7 +8,7 @@ const { view } = withDefaults(
 </script>
 
 <template>
-  <button class="btn-v" :class="{ [view]: !!view }">
+  <button class="btn-v" :class="[view]">
     <slot />
   </button>
 </template>
