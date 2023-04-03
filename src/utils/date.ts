@@ -25,13 +25,18 @@ export const daysOfMonth = (date: Date) => {
     }
   }
 
+  const today = new Date()
+
   for (let i = 1; i <= days; i++) {
     const payload: CalendarCell = {
       num: i,
     }
 
-    // TODO: mock
-    if (i === 3) {
+    if (
+      i === today.getDate() &&
+      today.getMonth() === date.getMonth() &&
+      today.getFullYear() === date.getFullYear()
+    ) {
       payload.isToday = true
     }
 
