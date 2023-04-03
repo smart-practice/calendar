@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 const { view } = withDefaults(
   defineProps<{
-    isNeighbour?: boolean,
-    isToday?: boolean,
+    isNeighbour?: boolean
+    isToday?: boolean
     view?: 'sm' | 'lg'
   }>(),
   { view: 'lg' },
@@ -11,7 +11,7 @@ const { view } = withDefaults(
 
 <template>
   <div
-    :class="[view, { neighbour: isNeighbour }, { today: isToday }]"
+    :class="[view, { neighbour: isNeighbour, today: isToday }]"
     @click="isNeighbour ? $emit('neighbour:click') : $emit('click')"
   >
     <slot />
