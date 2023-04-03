@@ -1,60 +1,68 @@
-<script lang="ts" setup>
+<script lang='ts' setup>
 import arrowSprite from '../assets/[arrows].svg'
+import globalSprite from '../assets/[global].svg'
 import logo from '../../public/favicon.svg'
-import {months} from '../resources/date'
-import {useCalendarStore} from '../stores/calendar'
-import {useThemeStore} from '../stores/theme'
+import { months } from '../resources/date'
+import { useCalendarStore } from '../stores/calendar'
+import { useThemeStore } from '../stores/theme'
 import Button from './Button.vue'
+import { useAppStore } from '../stores/app'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()
+const appStore = useAppStore()
 </script>
 
 <template>
-  <header class="header">
-    <div class="logo">
-      <img class="logo-img" :src="logo" alt="logo"/>
-      <p class="logo-text">Calendar</p>
+  <header class='header'>
+    <div class='logo'>
+      <div class='menu' @click='appStore.toggleSidebar()'>
+        <svg>
+          <use :href='`${globalSprite}#menu`' />
+        </svg>
+      </div>
+      <img class='logo-img' :src='logo' alt='logo' />
+      <p class='logo-text'>Calendar</p>
     </div>
-    <div class="btn-wrapper">
+    <div class='btn-wrapper'>
       <Button
-        view="outlined"
-        class="today"
-        @click="calendarStore.resetDay"
+        view='outlined'
+        class='today'
+        @click='calendarStore.resetDay'
       >
         Today
       </Button>
       <button
-        class="btn"
-        @click="calendarStore.decrementMonth"
-        title="Previous month"
+        class='btn'
+        @click='calendarStore.decrementMonth'
+        title='Previous month'
       >
-        <svg class="svg">
-          <use :href="`${arrowSprite}#default`"/>
+        <svg class='svg'>
+          <use :href='`${arrowSprite}#default`' />
         </svg>
       </button>
       <button
-        class="btn"
-        @click="calendarStore.incrementMonth"
-        title="Next month"
+        class='btn'
+        @click='calendarStore.incrementMonth'
+        title='Next month'
       >
-        <svg :class="{ svg: true, rotate: true }">
-          <use :href="`${arrowSprite}#default`"/>
+        <svg :class='{ svg: true, rotate: true }'>
+          <use :href='`${arrowSprite}#default`' />
         </svg>
       </button>
     </div>
-    <div class="date">
+    <div class='date'>
       {{ months[calendarStore.month] }} {{ calendarStore.year }}
     </div>
-    <Button view="outlined" @click="$emit('open')">Open modal</Button>
+    <Button view='outlined' @click="$emit('open')">Open modal</Button>
 
-    <Button view="outlined" @click="themeStore.toggleTheme"
+    <Button view='outlined' @click='themeStore.toggleTheme'
     >{{ themeStore.theme }}
     </Button>
   </header>
 </template>
 
-<style lang="scss" scoped>
+<style lang='scss' scoped>
 .header {
   display: flex;
   align-items: center;
@@ -70,6 +78,29 @@ const themeStore = useThemeStore()
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  svg {
+    fill: #c5c6c7;
+  }
+}
+
+.menu:hover {
+  background-color: #efeff0;
+
+  svg {
+    fill: #868686;
+  }
 }
 
 .logo-img {

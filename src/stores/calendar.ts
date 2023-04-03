@@ -39,7 +39,7 @@ export const useCalendarStore = defineStore('calendar', () => {
     daysOfMonth(new Date(year.value, month.value)),
   )
 
-  const resetDay = () =>{
+  const resetDay = () => {
     year.value = new Date().getFullYear()
     month.value = new Date().getMonth()
     day.value = new Date().getDate()
@@ -53,6 +53,6 @@ export const useCalendarStore = defineStore('calendar', () => {
     incrementMonth,
     decrementMonth,
     clickNeighbour,
-    resetDay
+    resetDay,
   }
 })
