@@ -35,6 +35,7 @@ defineProps<{
 
 <style lang="scss" scoped>
 .mini-calendar {
+  color: var(--tx-primary);
 }
 
 .weekday {

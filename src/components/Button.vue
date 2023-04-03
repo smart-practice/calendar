@@ -38,11 +38,15 @@ const { view } = withDefaults(
 .outlined {
   border: 1px solid var(--hairline);
   background-color: transparent;
-  color: var(--text-color-primary);
+  color: var(--tx-primary);
+
+  &:hover {
+    background-color: var(--bg-secondary);
+  }
 }
 
 .text {
   background-color: transparent;
-  color: var(--text-color-primary);
+  color: var(--tx-primary);
 }
 </style>

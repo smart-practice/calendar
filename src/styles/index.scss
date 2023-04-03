@@ -10,22 +10,28 @@
 
 // Default scheme
 :root {
-  --bg-color-primary: #fff;
-  --bg-color-secondary: #f3f3f3;
+  --bg-primary: #fff;
+  --bg-secondary: #f3f3f3;
 
-  --text-color-primary: #000;
-  --text-color-secondary: #747474;
+  --tx-primary: #000;
+  --tx-secondary: #747474;
+
+  --icon-primary: #b3b3b3;
+  --icon-hover: #747474;
 
   --hairline: #dadce0;
 }
 
 // Dark scheme
 :root.dark {
-  --bg-color-primary: #202124;
-  --bg-color-secondary: #202020;
+  --bg-primary: #202124;
+  --bg-secondary: #282828;
 
-  --text-color-primary: #bdc1c6;
-  --text-color-secondary: #747474;
+  --tx-primary: #bdc1c6;
+  --tx-secondary: #747474;
+
+  --icon-primary: #747474;
+  --icon-hover: #b0b0b0;
 
   --hairline: #3c4043;
 }
@@ -39,9 +45,10 @@ body {
   font-size: 16px;
   font-weight: 400;
   color: var(--text-color-primary);
-  background-color: var(--bg-color-primary);
+  background-color: var(--bg-primary);
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
+  user-select: none;
 }
 
 #app {

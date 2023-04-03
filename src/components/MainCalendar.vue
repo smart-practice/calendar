@@ -42,7 +42,7 @@ const store = useCalendarStore()
 .weekday {
   display: flex;
   height: var(--weekday-height);
-  color: #747474;
+  color: var(--tx-secondary);
 }
 
 .row {

@@ -6,7 +6,7 @@ const { view } = withDefaults(
     isNeighbour?: boolean
     isToday?: boolean
     view?: 'sm' | 'lg'
-    events: CalendarEvent[]
+    events?: CalendarEvent[]
   }>(),
   {
     view: 'lg',
@@ -41,9 +41,10 @@ const { view } = withDefaults(
   justify-content: center;
   cursor: pointer;
   border-radius: 50%;
+  color: var(--tx-primary);
 
   &:hover {
-    background-color: #f1f3f4;
+    background-color: var(--bg-secondary);
   }
 }
 
@@ -57,7 +58,7 @@ const { view } = withDefaults(
 }
 
 .neighbour .num {
-  color: var(--text-color-secondary);
+  color: var(--tx-secondary);
 }
 
 .sm {
