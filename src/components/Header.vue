@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import arrowSprite from '../assets/[arrows].svg'
 import logo from '../../public/favicon.svg'
-import { months } from '../resources/date'
-import { useCalendarStore } from '../stores/calendar'
-import { useThemeStore } from '../stores/theme'
+import {months} from '../resources/date'
+import {useCalendarStore} from '../stores/calendar'
+import {useThemeStore} from '../stores/theme'
 import Button from './Button.vue'
 
 const calendarStore = useCalendarStore()
@@ -13,17 +13,24 @@ const themeStore = useThemeStore()
 <template>
   <header class="header">
     <div class="logo">
-      <img class="logo-img" :src="logo" alt="logo" />
+      <img class="logo-img" :src="logo" alt="logo"/>
       <p class="logo-text">Calendar</p>
     </div>
     <div class="btn-wrapper">
+      <Button
+        view="outlined"
+        class="today"
+        @click="calendarStore.resetDay"
+      >
+        Today
+      </Button>
       <button
         class="btn"
         @click="calendarStore.decrementMonth"
         title="Previous month"
       >
         <svg class="svg">
-          <use :href="`${arrowSprite}#default`" />
+          <use :href="`${arrowSprite}#default`"/>
         </svg>
       </button>
       <button
@@ -32,7 +39,7 @@ const themeStore = useThemeStore()
         title="Next month"
       >
         <svg :class="{ svg: true, rotate: true }">
-          <use :href="`${arrowSprite}#default`" />
+          <use :href="`${arrowSprite}#default`"/>
         </svg>
       </button>
     </div>
@@ -42,7 +49,7 @@ const themeStore = useThemeStore()
     <Button view="outlined" @click="$emit('open')">Open modal</Button>
 
     <Button view="outlined" @click="themeStore.toggleTheme"
-      >{{ themeStore.theme }}
+    >{{ themeStore.theme }}
     </Button>
   </header>
 </template>
@@ -78,6 +85,11 @@ const themeStore = useThemeStore()
 .btn-wrapper {
   display: flex;
   align-items: center;
+}
+
+.today {
+  margin-right: 20px;
+  margin-left: 40px;
 }
 
 .btn {
