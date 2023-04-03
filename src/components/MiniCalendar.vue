@@ -8,13 +8,6 @@ defineProps<{
   isNeighbour?: boolean
   isToday?: boolean
 }>()
-const clickNeighbour = (rowIndex: number) => {
-  if (rowIndex === 0) {
-    store.decrementMonth()
-  } else {
-    store.incrementMonth()
-  }
-}
 </script>
 
 <template>
@@ -30,7 +23,7 @@ const clickNeighbour = (rowIndex: number) => {
           view="sm"
           :key="`${item.num}-${index}`"
           :is-neighbour="item.isNeighbour"
-          @neighbour:click="clickNeighbour(index)"
+          @neighbour:click="store.clickNeighbour(index)"
         >
           {{ item.num }}
         </Cell>

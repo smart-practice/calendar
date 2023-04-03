@@ -26,6 +26,14 @@ export const useCalendarStore = defineStore('calendar', () => {
     month.value--
   }
 
+  const clickNeighbour = (rowIndex: number) => {
+    if (rowIndex === 0) {
+      decrementMonth()
+    } else {
+      incrementMonth()
+    }
+  }
+
   const cellDaysOfMonth = computed(() =>
     daysOfMonth(new Date(year.value, month.value)),
   )
@@ -36,5 +44,6 @@ export const useCalendarStore = defineStore('calendar', () => {
     cellDaysOfMonth,
     incrementMonth,
     decrementMonth,
+    clickNeighbour
   }
 })
