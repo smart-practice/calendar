@@ -4,7 +4,13 @@ import logo from '../../public/favicon.svg'
 
 <template>
   <div class="logo" aria-label="Calendar">
-    <img :src="logo" class="img" role="presentation" aria-hidden="true" alt />
+    <img
+      :src="logo"
+      class="img"
+      role="presentation"
+      aria-hidden="true"
+      alt="Logo"
+    />
     <p class="logo-text" role="heading">Calendar</p>
   </div>
 </template>
