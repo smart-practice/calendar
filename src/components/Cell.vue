@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 const { view } = withDefaults(
   defineProps<{
-    isNeighbour?: boolean
+    isNeighbour?: boolean,
+    isToday?: boolean,
     view?: 'sm' | 'lg'
   }>(),
   { view: 'lg' },
@@ -10,7 +11,7 @@ const { view } = withDefaults(
 
 <template>
   <div
-    :class="[view, { neighbour: isNeighbour }]"
+    :class="[view, { neighbour: isNeighbour }, { today: isToday }]"
     @click="isNeighbour ? $emit('neighbour:click') : $emit('click')"
   >
     <slot />
@@ -30,12 +31,21 @@ const { view } = withDefaults(
   &.neighbour {
     color: var(--text-color-secondary);
   }
+
+  &.today {
+    color: #ffffff;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+  }
 }
 
 .lg {
   &.neighbour {
     background-color: var(--bg-color-secondary);
     color: #747474;
+  }
+
+  &.today {
   }
 }
 </style>

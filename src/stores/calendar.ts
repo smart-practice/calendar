@@ -5,6 +5,7 @@ import { daysOfMonth } from '../utils/date'
 export const useCalendarStore = defineStore('calendar', () => {
   const year = ref(new Date().getFullYear())
   const month = ref(new Date().getMonth())
+  const day = ref(new Date().getDay())
 
   const incrementMonth = () => {
     if (month.value === 11) {
@@ -41,6 +42,7 @@ export const useCalendarStore = defineStore('calendar', () => {
   return {
     year,
     month,
+    day,
     cellDaysOfMonth,
     incrementMonth,
     decrementMonth,

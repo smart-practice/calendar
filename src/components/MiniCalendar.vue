@@ -22,7 +22,8 @@ defineProps<{
           v-for="item in row"
           view="sm"
           :key="`${item.num}-${index}`"
-          :is-neighbour="item.isNeighbour"
+          :is-neighbour="item?.isNeighbour"
+          :is-today="item?.isToday"
           @neighbour:click="store.clickNeighbour(index)"
         >
           {{ item.num }}
