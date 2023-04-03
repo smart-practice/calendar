@@ -41,16 +41,12 @@ const clickNeighbour = (rowIndex: number) => {
 
 <style lang="scss" scoped>
 .mini-calendar {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  width: 100%;
 }
 
 .weekday {
   display: flex;
   color: #747474;
-  font-size: 10px;
+  font-size: 11px;
   margin-bottom: 5px;
 
   & > * {

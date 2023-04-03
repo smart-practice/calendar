@@ -21,7 +21,7 @@ const { view } = withDefaults(
 .sm {
   width: 25px;
   height: 25px;
-  font-size: 10px;
+  font-size: 11px;
   display: flex;
   align-items: center;
   justify-content: center;

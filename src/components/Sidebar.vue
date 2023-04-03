@@ -1,20 +1,22 @@
 <script lang="ts" setup>
-import MiniCalendar from "./MiniCalendar.vue";
+import MiniCalendar from './MiniCalendar.vue'
+import Button from './Button.vue'
 </script>
 
 <template>
   <div class="sidebar">
+    <Button class="btn" full-width>Create</Button>
     <MiniCalendar />
   </div>
 </template>
 
 <style scoped>
 .sidebar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-  width: 250px;
+  padding: 25px;
   border-right: 1px solid var(--hairline);
+}
+
+.btn {
+  margin-bottom: 20px;
 }
 </style>
