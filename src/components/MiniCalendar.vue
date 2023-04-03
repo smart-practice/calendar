@@ -1,3 +1,22 @@
+<script lang="ts" setup>
+import { useCalendarStore } from "../stores/calendar";
+import {months, weekdays} from "../resources/date";
+import Cell from "./Cell.vue";
+const store = useCalendarStore()
+
+defineProps<{
+  isNeighbour?: boolean
+  isToday?: boolean
+}>()
+const clickNeighbour = (rowIndex: number) => {
+  if (rowIndex === 0) {
+    store.decrementMonth()
+  } else {
+    store.incrementMonth()
+  }
+}
+</script>
+
 <template>
   <div class="mini-calendar">
     <div class="calendar-header">
@@ -20,25 +39,6 @@
     </div>
   </div>
 </template>
-
-<script lang="ts" setup>
-import { useCalendarStore } from "../stores/calendar";
-import {months, weekdays} from "../resources/date";
-import Cell from "./Cell.vue";
-const store = useCalendarStore()
-
-defineProps<{
-  isNeighbour?: boolean
-  isToday?: boolean
-}>()
-const clickNeighbour = (rowIndex: number) => {
-  if (rowIndex === 0) {
-    store.decrementMonth()
-  } else {
-    store.incrementMonth()
-  }
-}
-</script>
 
 <style scoped>
 .mini-calendar {

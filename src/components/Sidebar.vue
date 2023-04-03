@@ -1,12 +1,12 @@
+<script lang="ts" setup>
+import MiniCalendar from "./MiniCalendar.vue";
+</script>
+
 <template>
   <div class="sidebar">
     <MiniCalendar />
   </div>
 </template>
-
-<script lang="ts" setup>
-import MiniCalendar from "./MiniCalendar.vue";
-</script>
 
 <style scoped>
 .sidebar {
