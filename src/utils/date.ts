@@ -1,13 +1,10 @@
-interface Cell {
-  num: number
-  isNeighbour?: boolean
-}
+import { CalendarCell } from '../types/date'
 
 export const daysInMonth = (year: number, month: number) =>
   new Date(year, month + 1, 0).getDate()
 
 export const daysOfMonth = (date: Date) => {
-  let res: Array<Cell[]> = [[]]
+  let res: Array<CalendarCell[]> = [[]]
 
   const days = daysInMonth(date.getFullYear(), date.getMonth())
 
@@ -20,13 +17,29 @@ export const daysOfMonth = (date: Date) => {
 
     while (i !== prev.getDay() + 1) {
       // TODO: rewrite to push [O(1)]
-      res[0].unshift({ num: prev.getDate() - i, isNeighbour: true })
+      res[0].unshift({
+        num: prev.getDate() - i,
+        isNeighbour: true,
+      })
       i++
     }
   }
 
+  const today = new Date()
+
   for (let i = 1; i <= days; i++) {
-    const payload: Cell = { num: i }
+    const payload: CalendarCell = {
+      num: i,
+    }
+
+    if (
+      i === today.getDate() &&
+      today.getMonth() === date.getMonth() &&
+      today.getFullYear() === date.getFullYear()
+    ) {
+      payload.isToday = true
+    }
+
     const lastRow = res[res.length - 1]
 
     if (lastRow.length && lastRow.length % 7 === 0) {

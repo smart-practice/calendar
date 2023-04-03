@@ -2,13 +2,18 @@
 const { view } = withDefaults(
   defineProps<{
     view?: 'default' | 'text' | 'outlined'
+    fullWidth?: boolean
   }>(),
-  { view: 'default' },
+  { view: 'default', fullWidth: false },
 )
 </script>
 
 <template>
-  <button class="btn-v" :class="[view]">
+  <button
+    class="btn-v"
+    :class="[view]"
+    :style="{ width: fullWidth ? '100%' : 'auto' }"
+  >
     <slot />
   </button>
 </template>

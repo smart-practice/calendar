@@ -5,13 +5,6 @@ import { useCalendarStore } from '../stores/calendar'
 
 const store = useCalendarStore()
 
-const clickNeighbour = (rowIndex: number) => {
-  if (rowIndex === 0) {
-    store.decrementMonth()
-  } else {
-    store.incrementMonth()
-  }
-}
 </script>
 
 <template>
@@ -25,7 +18,7 @@ const clickNeighbour = (rowIndex: number) => {
           v-for="item in row"
           :key="`${item.num}-${index}`"
           :is-neighbour="item.isNeighbour"
-          @neighbour:click="clickNeighbour(index)"
+          @neighbour:click="store.clickNeighbour(index)"
         >
           {{ item.num }}
         </Cell>
@@ -35,6 +28,10 @@ const clickNeighbour = (rowIndex: number) => {
 </template>
 
 <style scoped>
+.month{
+  flex-grow: 1;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
