@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useCalendarStore } from "../stores/calendar";
-import {months, weekdays} from "../resources/date";
-import Cell from "./Cell.vue";
+import { useCalendarStore } from '../stores/calendar'
+import { months, weekdays } from '../resources/date'
+import Cell from './Cell.vue'
 const store = useCalendarStore()
 
 defineProps<{
@@ -19,16 +19,15 @@ const clickNeighbour = (rowIndex: number) => {
 
 <template>
   <div class="mini-calendar">
-    <div class="calendar-header">
-      {{ months[store.month] }} {{ store.year }}
-      <div class="weekday">
-        <div v-for="day in weekdays" :key="day">{{ day }}</div>
-      </div>
+    {{ months[store.month] }} {{ store.year }}
+    <div class="weekday">
+      <div v-for="day in weekdays" :key="day">{{ day }}</div>
     </div>
     <div role="grid" class="wrapper">
       <div v-for="(row, index) in store.cellDaysOfMonth" role="row" class="row">
         <Cell
           v-for="item in row"
+          view="sm"
           :key="`${item.num}-${index}`"
           :is-neighbour="item.isNeighbour"
           @neighbour:click="clickNeighbour(index)"
@@ -40,7 +39,7 @@ const clickNeighbour = (rowIndex: number) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .mini-calendar {
   display: flex;
   flex-direction: column;
@@ -48,22 +47,21 @@ const clickNeighbour = (rowIndex: number) => {
   width: 100%;
 }
 
-.calendar-header {
-  justify-self: flex-start;
-}
-
 .weekday {
   display: flex;
-  justify-content: space-between;
-  height: var(--weekday-height);
   color: #747474;
   font-size: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+
+  & > * {
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 </style>
