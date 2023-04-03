@@ -35,6 +35,10 @@ const clickNeighbour = (rowIndex: number) => {
 </template>
 
 <style scoped>
+.month{
+  flex-grow: 1;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
