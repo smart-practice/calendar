@@ -4,13 +4,12 @@ import { weekdays } from '../resources/date'
 import { useCalendarStore } from '../stores/calendar'
 
 const store = useCalendarStore()
-
 </script>
 
 <template>
   <div role="presentation" class="month">
     <div role="row" class="weekday">
-      <Cell v-for="day in weekdays" :key="day">{{ day }}</Cell>
+      <div v-for="day in weekdays" :key="day">{{ day }}</div>
     </div>
     <div role="grid" class="wrapper">
       <div v-for="(row, index) in store.cellDaysOfMonth" role="row" class="row">
@@ -18,6 +17,7 @@ const store = useCalendarStore()
           v-for="item in row"
           :key="`${item.num}-${index}`"
           :is-neighbour="item.isNeighbour"
+          :is-today="item.isToday"
           @neighbour:click="store.clickNeighbour(index)"
         >
           {{ item.num }}
@@ -28,7 +28,7 @@ const store = useCalendarStore()
 </template>
 
 <style scoped>
-.month{
+.month {
   flex-grow: 1;
 }
 

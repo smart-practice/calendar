@@ -27,8 +27,12 @@ const { view } = withDefaults(
 }
 
 .default {
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: #fff;
+
+  &:hover {
+    background-color: var(--on-primary);
+  }
 }
 
 .outlined {

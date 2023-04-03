@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
   <div class="mini-calendar">
-    {{ months[store.month] }} {{ store.year }}
+    <span>{{ months[store.month] }} {{ store.year }}</span>
     <div class="weekday">
       <div v-for="day in weekdays" :key="day">{{ day }}</div>
     </div>
@@ -48,10 +48,15 @@ defineProps<{
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 2px;
   }
 }
 
 .row {
   display: flex;
+
+  & > * {
+    margin: 2px;
+  }
 }
 </style>
