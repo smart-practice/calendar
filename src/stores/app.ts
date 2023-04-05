@@ -8,7 +8,7 @@ export const useAppStore = defineStore('app', () => {
 
   const toggleSidebar = () => {
     const val = !isSidebarOpen.value
-    localStorage?.setItem(SIDEBAR_OPEN, String(val))
+    localStorage.setItem(SIDEBAR_OPEN, String(val))
     isSidebarOpen.value = val
   }
 
