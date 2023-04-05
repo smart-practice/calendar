@@ -7,6 +7,7 @@ import { useThemeStore } from '../stores/theme'
 import Button from './Button.vue'
 import Logo from './Logo.vue'
 import { useAppStore } from '../stores/app'
+import Switcher from './Switcher.vue'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()
@@ -48,10 +49,9 @@ const appStore = useAppStore()
       {{ months[calendarStore.month] }} {{ calendarStore.year }}
     </div>
     <Button view="outlined" @click="$emit('open')">Open modal</Button>
-
-    <Button view="outlined" @click="themeStore.toggleTheme"
-      >{{ themeStore.theme }}
-    </Button>
+    <div class="right">
+      <Switcher @change='themeStore.toggleTheme' />
+    </div>
   </header>
 </template>
 
@@ -97,7 +97,6 @@ const appStore = useAppStore()
 
 .today {
   margin-right: 20px;
-  margin-left: 40px;
 }
 
 .btn {
@@ -137,5 +136,9 @@ const appStore = useAppStore()
 
 .rotate {
   transform: rotate(180deg);
+}
+
+.right{
+  margin-left: auto;
 }
 </style>
