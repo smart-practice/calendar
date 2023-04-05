@@ -1,7 +1,7 @@
 <template>
-  <label class='switch'>
-    <input class='checkbox' type='checkbox' hidden>
-    <span class='circle' />
+  <label class="switch">
+    <input class="checkbox" type="checkbox" hidden />
+    <span class="circle" />
   </label>
 </template>
 
@@ -29,11 +29,10 @@
   background-color: var(--icon-primary);
   border: 1px solid var(--icon-primary);
   border-radius: 50%;
-  transition: left .3s;
+  transition: left 0.3s;
 }
 
-.checkbox:checked + .circle{
+.checkbox:checked + .circle {
   left: 34px;
 }
-
 </style>

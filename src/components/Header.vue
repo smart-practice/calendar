@@ -50,7 +50,7 @@ const appStore = useAppStore()
     </div>
     <Button view="outlined" @click="$emit('open')">Open modal</Button>
     <div class="right">
-      <Switcher @change='themeStore.toggleTheme' />
+      <Switcher @change="themeStore.toggleTheme" />
     </div>
   </header>
 </template>
@@ -138,7 +138,7 @@ const appStore = useAppStore()
   transform: rotate(180deg);
 }
 
-.right{
+.right {
   margin-left: auto;
 }
 </style>

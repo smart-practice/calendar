@@ -4,7 +4,7 @@ import Header from './components/Header.vue'
 import MainCalendar from './components/MainCalendar.vue'
 import Modal from './components/Modal.vue'
 import { useThemeStore } from './stores/theme'
-import Sidebar from "./components/Sidebar.vue";
+import Sidebar from './components/Sidebar.vue'
 
 const themeStore = useThemeStore()
 
@@ -28,7 +28,7 @@ onMounted(() => {
 </template>
 
 <style>
-.main{
+.main {
   display: flex;
 }
 </style>

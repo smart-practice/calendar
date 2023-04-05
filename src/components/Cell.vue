@@ -6,13 +6,13 @@ const { view } = withDefaults(
     isNeighbour?: boolean
     isToday?: boolean
     view?: 'sm' | 'lg'
-    events?: CalendarEvent[]
+    // events?: CalendarEvent[]
   }>(),
   {
     view: 'lg',
     isNeighbour: false,
     isToday: false,
-    events: () => [],
+    // events: () => [],
   },
 )
 </script>
@@ -28,7 +28,7 @@ const { view } = withDefaults(
     <div v-else class="num">
       <slot />
     </div>
-    <div v-if="events.length > 0" class="events"></div>
+    <!--        <div v-if="events.length > 0" class="events"></div>-->
   </div>
 </template>
 
