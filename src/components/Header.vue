@@ -50,7 +50,10 @@ const appStore = useAppStore()
     </div>
     <Button view="outlined" @click="$emit('open')">Open modal</Button>
     <div class="right">
-      <Switcher @change="themeStore.toggleTheme" />
+      <Switcher
+        :checked="themeStore.theme === 'dark'"
+        @change="themeStore.toggleTheme"
+      />
     </div>
   </header>
 </template>

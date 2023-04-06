@@ -1,6 +1,10 @@
+<script lang="ts" setup>
+const { checked } = defineProps<{ checked: boolean }>()
+</script>
+
 <template>
   <label class="switch">
-    <input class="checkbox" type="checkbox" hidden />
+    <input class="checkbox" type="checkbox" :checked="checked" hidden />
     <span class="circle" />
   </label>
 </template>
