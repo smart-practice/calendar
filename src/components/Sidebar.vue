@@ -19,7 +19,7 @@ const eventsStore = useEventsStore()
 
 <style scoped>
 .sidebar {
-  padding: 25px;
+  padding: 25px 30px;
   border-right: 1px solid var(--hairline);
 }
 

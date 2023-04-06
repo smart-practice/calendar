@@ -50,6 +50,9 @@ const eventsStore = useEventsStore()
   display: flex;
   height: var(--weekday-height);
   color: var(--tx-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 
 .row {
@@ -65,5 +68,9 @@ const eventsStore = useEventsStore()
   width: calc(100% / 7);
   border-right: 1px solid var(--hairline);
   padding-left: 5px;
+}
+
+.weekday > * {
+  padding-left: 8px;
 }
 </style>

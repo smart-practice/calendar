@@ -28,16 +28,21 @@ const { checked, icons } = defineProps<{ checked: boolean; icons: Icon[] }>()
   background-color: var(--bg-secondary);
   position: relative;
   height: 24px;
-  width: 50px;
+  width: 45px;
   cursor: pointer;
   border: 1px solid var(--icon-primary);
   border-radius: 20px;
+  transition: border-color 0.1s;
+
+  &:hover {
+    border-color: var(--icon-hover);
+  }
 }
 
 .circle {
   display: flex;
   position: absolute;
-  left: 4px;
+  left: 1px;
   align-items: center;
   padding: 4px 10px;
   width: 20px;
@@ -60,7 +65,7 @@ const { checked, icons } = defineProps<{ checked: boolean; icons: Icon[] }>()
 }
 
 .checkbox:checked + .circle {
-  left: 23px;
+  left: 20px;
 }
 
 .checkbox:not(:checked) + .circle svg {

@@ -44,6 +44,8 @@ const numClass = ['num', { longNum }]
   cursor: pointer;
   border-radius: 50%;
   color: var(--tx-primary);
+  font-weight: 400;
+  font-size: 14px;
 
   &:hover {
     background-color: var(--bg-secondary);
@@ -61,7 +63,7 @@ const numClass = ['num', { longNum }]
 
 .longNum {
   width: auto;
-  border-radius: 20%;
+  border-radius: 28%;
   padding: 0 8px;
 }
 

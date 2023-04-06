@@ -42,7 +42,7 @@ export const daysOfMonth = (date: Date) => {
     }
 
     if (payload.num === 1) {
-      payload.child = `${payload.num} ${months[date.getMonth()].slice(0, 3)}`
+      payload.child = `${months[date.getMonth()].slice(0, 3)} ${payload.num}`
     }
 
     const lastRow = res[res.length - 1]
@@ -62,7 +62,7 @@ export const daysOfMonth = (date: Date) => {
 
       if (payload.num === 1) {
         const m = date.getMonth() === 11 ? -1 : date.getMonth()
-        payload.child = `${payload.num} ${months[m + 1].slice(0, 3)}`
+        payload.child = `${months[m + 1].slice(0, 3)} ${payload.num}`
       }
 
       res[res.length - 1].push(payload)
@@ -81,7 +81,7 @@ export const daysOfMonth = (date: Date) => {
 
       if (payload.num === 1) {
         const m = date.getMonth() === 11 ? -1 : date.getMonth()
-        payload.child = `${payload.num} ${months[m + 1].slice(0, 3)}`
+        payload.child = `${months[m + 1].slice(0, 3)} ${payload.num}`
       }
 
       if (val >= days) {

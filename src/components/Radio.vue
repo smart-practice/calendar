@@ -1,12 +1,22 @@
 <script lang="ts" setup>
+import { computed, defineProps } from 'vue'
+
 const props = withDefaults(
   defineProps<{
-    name: string
-    value: string
-    checked: boolean
+    value?: string
+    modelValue?: string
   }>(),
-  {},
+  {
+    value: undefined,
+    modelValue: '',
+  },
 )
+
+defineEmits(['update:modelValue'])
+
+const isChecked = computed(() => {
+  return props.modelValue === props.value
+})
 </script>
 
 <template>
@@ -14,9 +24,10 @@ const props = withDefaults(
     <input
       class="radio"
       type="radio"
-      :name="props.name"
-      :value="props.value"
-      :checked="props.checked"
+      :name="name"
+      :value="value"
+      :checked="isChecked"
+      @change="$emit('update:modelValue', $event.target.value)"
       hidden
     />
     <span class="label-text"><slot /></span>

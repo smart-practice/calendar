@@ -27,8 +27,7 @@ const saveEventHandler = () => {
         v-for="title in eventTypes"
         :key="title"
         :value="title"
-        :checked="title === activeType"
-        @change="activeType = title"
+        v-model="activeType"
       >
         {{ title }}
       </Radio>

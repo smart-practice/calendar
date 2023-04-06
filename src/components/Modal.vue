@@ -8,7 +8,7 @@ const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
 </script>
 
 <template>
-  <div v-show="props.isOpen">
+  <div v-if="props.isOpen">
     <div class="overlay" @click="$emit('close')" />
     <div class="dialog">
       <header class="dialog-header">
