@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
 import arrowSprite from '../assets/[arrows].svg'
 import globalSprite from '../assets/[global].svg'
 import { months } from '../resources/date'
@@ -8,7 +9,6 @@ import Button from './Button.vue'
 import Logo from './Logo.vue'
 import { useAppStore } from '../stores/app'
 import Switcher from './Switcher.vue'
-import { computed } from 'vue'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()
@@ -54,6 +54,10 @@ const dateTitle = computed(
     <div class="right">
       <Switcher
         :checked="themeStore.theme === 'dark'"
+        :icons="[
+          { sprite: globalSprite, id: 'moon', mode: true },
+          { sprite: globalSprite, id: 'sun', mode: false },
+        ]"
         @change="themeStore.toggleTheme"
       />
     </div>
