@@ -4,6 +4,7 @@ import { useEventsStore } from '../stores/events'
 import Modal from './Modal.vue'
 import Radio from './Radio.vue'
 import { eventTypes } from '../resources/events'
+import Input from './Input.vue'
 
 const eventsStore = useEventsStore()
 
@@ -21,16 +22,19 @@ const saveEventHandler = () => {
     @close="eventsStore.closeCreateModal"
     @save="saveEventHandler"
   >
-    <div class="radio-wrapper">
-      <Radio
-        name="type"
-        v-for="title in eventTypes"
-        :key="title"
-        :value="title"
-        v-model="activeType"
-      >
-        {{ title }}
-      </Radio>
+    <div class="content">
+      <Input placeholder="Add title" />
+      <div class="radio-wrapper">
+        <Radio
+          name="type"
+          v-for="title in eventTypes"
+          :key="title"
+          :value="title"
+          v-model="activeType"
+        >
+          {{ title }}
+        </Radio>
+      </div>
     </div>
   </Modal>
 </template>
@@ -39,5 +43,9 @@ const saveEventHandler = () => {
 .radio-wrapper {
   display: flex;
   gap: 10px;
+}
+
+.content {
+  padding-left: 50px;
 }
 </style>
