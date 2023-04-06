@@ -5,11 +5,14 @@ import MainCalendar from './components/MainCalendar.vue'
 import { useThemeStore } from './stores/theme'
 import Sidebar from './components/Sidebar.vue'
 import CreateEventModal from './components/CreateEventModal.vue'
+import { useAppStore } from './stores/app'
 
 const themeStore = useThemeStore()
+const appStore = useAppStore()
 
 onMounted(() => {
   themeStore.initUserTheme()
+  appStore.initSidebarOpen()
 })
 </script>
 

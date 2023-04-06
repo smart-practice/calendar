@@ -9,7 +9,7 @@ const eventsStore = useEventsStore()
 </script>
 
 <template>
-  <div v-show="appStore.isSidebarOpen" class="sidebar">
+  <div v-show="+appStore.isSidebarOpen" class="sidebar">
     <Button class="btn" @click="eventsStore.openCreateModal" full-width>
       Create
     </Button>

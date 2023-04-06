@@ -1,19 +1,37 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+type SidebarOpenType = '0' | '1'
+
 const SIDEBAR_OPEN = 'sidebar-open'
 
 export const useAppStore = defineStore('app', () => {
-  const isSidebarOpen = ref(localStorage.getItem(SIDEBAR_OPEN) && true)
+  const isSidebarOpen = ref<SidebarOpenType>()
 
-  const toggleSidebar = () => {
-    const val = !isSidebarOpen.value
-    localStorage.setItem(SIDEBAR_OPEN, String(val))
-    isSidebarOpen.value = val
+  const getSidebarOpen = () => localStorage.getItem(SIDEBAR_OPEN)
+
+  const setSidebarOpen = (value: SidebarOpenType) => {
+    localStorage.setItem(SIDEBAR_OPEN, value)
+    isSidebarOpen.value = value
+  }
+
+  const toggleSidebarOpen = () => {
+    const activeVal = getSidebarOpen()
+    if (activeVal === '1') {
+      setSidebarOpen('0')
+    } else {
+      setSidebarOpen('1')
+    }
+  }
+
+  const initSidebarOpen = () => {
+    const initSidebarOpen = getSidebarOpen() || '1'
+    setSidebarOpen(initSidebarOpen as SidebarOpenType)
   }
 
   return {
     isSidebarOpen,
-    toggleSidebar,
+    toggleSidebarOpen,
+    initSidebarOpen,
   }
 })

@@ -21,7 +21,7 @@ const dateTitle = computed(
 
 <template>
   <header class="header" role="banner">
-    <div class="menu" role="button" @click="appStore.toggleSidebar()">
+    <div class="menu" role="button" @click="appStore.toggleSidebarOpen">
       <svg>
         <use :href="`${globalSprite}#burger`" />
       </svg>
