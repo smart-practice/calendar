@@ -5,13 +5,22 @@ import Modal from './Modal.vue'
 import Radio from './Radio.vue'
 import { eventTypes } from '../resources/events'
 
-const store = useEventsStore()
+const eventsStore = useEventsStore()
 
 const activeType = ref(eventTypes[0])
+
+const saveEventHandler = () => {
+  // save event here
+  eventsStore.closeCreateModal()
+}
 </script>
 
 <template>
-  <Modal :is-open="store.isCreateModalOpen" @close="store.closeCreateModal">
+  <Modal
+    :is-open="eventsStore.isCreateModalOpen"
+    @close="eventsStore.closeCreateModal"
+    @save="saveEventHandler"
+  >
     <div class="radio-wrapper">
       <Radio
         name="type"
