@@ -1,6 +1,5 @@
 import { CalendarCell } from '../types/date'
 import { months } from '../resources/date'
-import Cell from '../components/Cell.vue'
 
 export const daysInMonth = (year: number, month: number) =>
   new Date(year, month + 1, 0).getDate()
@@ -59,7 +58,7 @@ export const daysOfMonth = (date: Date) => {
     let newDay = 1
 
     while (res[res.length - 1].length !== 7) {
-      const payload: Cell = { num: newDay, isNeighbour: true }
+      const payload: CalendarCell = { num: newDay, isNeighbour: true }
 
       if (payload.num === 1) {
         const m = date.getMonth() === 11 ? 0 : date.getMonth()
