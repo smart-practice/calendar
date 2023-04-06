@@ -6,7 +6,5 @@ const store = useEventsStore()
 </script>
 
 <template>
-  <Modal :is-open="store.isCreateModalOpen" @close="store.closeCreateModal">
-    <div>Content</div>
-  </Modal>
+  <Modal :is-open="store.isCreateModalOpen" @close="store.closeCreateModal" />
 </template>

@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import Radio from './Radio.vue'
+import globalSprites from '../assets/[global].svg'
+import Button from './Button.vue'
+
 const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
   isOpen: false,
 })
@@ -8,7 +12,18 @@ const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
   <div v-show="props.isOpen">
     <div class="overlay" @click="$emit('close')" />
     <div class="dialog">
-      <slot />
+      <div class="dialog-header">
+        <Button class="close" :view="'outlined'" @click="$emit('close')">
+          <svg>
+            <use :href="`${globalSprites}#close`" />
+          </svg>
+        </Button>
+      </div>
+      <div class="radio-wrapper">
+        <Radio>Мероприятие</Radio>
+        <Radio>Задача</Radio>
+        <Radio>Напоминание</Radio>
+      </div>
     </div>
   </div>
 </template>
@@ -31,6 +46,7 @@ const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
   transform: translate(-50%, -50%);
   position: fixed;
   display: flex;
+  flex-direction: column;
   background: var(--bg-primary);
   color: var(--tx-primary);
   padding: 20px;
@@ -58,5 +74,31 @@ const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
     opacity: 1;
     transform: translate(-50%, -50%);
   }
+}
+
+.dialog-header {
+  display: flex;
+  margin-bottom: 10px;
+
+  .close {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding: 5px;
+    border: none;
+    border-radius: 50%;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--icon-primary);
+      cursor: pointer;
+    }
+  }
+}
+
+.radio-wrapper {
+  display: flex;
+  gap: 10px;
 }
 </style>
