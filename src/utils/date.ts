@@ -1,4 +1,6 @@
 import { CalendarCell } from '../types/date'
+import { months } from '../resources/date'
+import Cell from '../components/Cell.vue'
 
 export const daysInMonth = (year: number, month: number) =>
   new Date(year, month + 1, 0).getDate()
@@ -40,6 +42,10 @@ export const daysOfMonth = (date: Date) => {
       payload.isToday = true
     }
 
+    if (payload.num === 1) {
+      payload.child = `${payload.num} ${months[date.getMonth()].slice(0, 3)}`
+    }
+
     const lastRow = res[res.length - 1]
 
     if (lastRow.length && lastRow.length % 7 === 0) {
@@ -53,21 +59,15 @@ export const daysOfMonth = (date: Date) => {
     let newDay = 1
 
     while (res[res.length - 1].length !== 7) {
-      res[res.length - 1].push({ num: newDay, isNeighbour: true })
+      const payload: Cell = { num: newDay, isNeighbour: true }
+
+      if (payload.num === 1) {
+        const m = date.getMonth() === 11 ? 0 : date.getMonth()
+        payload.child = `${payload.num} ${months[m + 1].slice(0, 3)}`
+      }
+
+      res[res.length - 1].push(payload)
       newDay++
-    }
-  }
-
-  if (res.length !== 6) {
-    const lastNum = res[res.length - 1].at(-1)!.num
-
-    let i = 1
-
-    res.push([])
-
-    while (res[res.length - 1].length !== 7) {
-      res[res.length - 1].push({ num: lastNum + i, isNeighbour: true })
-      i++
     }
   }
 

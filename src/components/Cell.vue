@@ -1,18 +1,22 @@
 <script lang="ts" setup>
-const { view } = withDefaults(
+const { view, longNum } = withDefaults(
   defineProps<{
     isNeighbour?: boolean
     isToday?: boolean
     view?: 'sm' | 'lg'
+    longNum?: boolean
     // events?: CalendarEvent[]
   }>(),
   {
     view: 'lg',
     isNeighbour: false,
     isToday: false,
+    longNum: false,
     // events: () => [],
   },
 )
+
+const numClass = ['num', { longNum }]
 </script>
 
 <template>
@@ -20,10 +24,10 @@ const { view } = withDefaults(
     :class="[view, { neighbour: isNeighbour, today: isToday }]"
     @click="isNeighbour ? $emit('neighbour:click') : $emit('click')"
   >
-    <h2 v-if="view === 'lg'" class="num" aria-hidden="true">
+    <h2 v-if="view === 'lg'" :class="numClass" aria-hidden="true">
       <slot />
     </h2>
-    <div v-else class="num">
+    <div v-else :class="numClass">
       <slot />
     </div>
     <!--        <div v-if="events.length > 0" class="events"></div>-->
@@ -53,6 +57,12 @@ const { view } = withDefaults(
   &:hover {
     background-color: var(--on-primary);
   }
+}
+
+.longNum {
+  width: auto;
+  border-radius: 20%;
+  padding: 0 8px;
 }
 
 .neighbour .num {

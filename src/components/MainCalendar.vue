@@ -24,9 +24,10 @@ const eventsStore = useEventsStore()
           :key="`${item.num}-${index}`"
           :is-neighbour="item.isNeighbour"
           :is-today="item.isToday"
+          :long-num="!!item?.child"
           @click="eventsStore.openCreateModal"
         >
-          {{ item.num }}
+          {{ item?.child ?? item.num }}
         </Cell>
       </div>
     </div>
