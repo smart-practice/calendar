@@ -25,10 +25,10 @@ const { checked, icons } = defineProps<{ checked: boolean; icons: Icon[] }>()
 .switch {
   display: flex;
   align-items: center;
-  background-color: transparent;
+  background-color: var(--bg-secondary);
   position: relative;
   height: 24px;
-  width: 60px;
+  width: 50px;
   cursor: pointer;
   border: 1px solid var(--icon-primary);
   border-radius: 20px;
@@ -37,13 +37,13 @@ const { checked, icons } = defineProps<{ checked: boolean; icons: Icon[] }>()
 .circle {
   display: flex;
   position: absolute;
-  left: 3px;
+  left: 4px;
   align-items: center;
   padding: 4px 10px;
   width: 20px;
   height: 20px;
-  background-color: var(--icon-primary);
-  border: 1px solid var(--icon-primary);
+  background-color: var(--bg-primary);
+  border: 1px solid var(--bg-primary);
   border-radius: 50%;
   transition: left 0.3s;
 
@@ -60,7 +60,15 @@ const { checked, icons } = defineProps<{ checked: boolean; icons: Icon[] }>()
 }
 
 .checkbox:checked + .circle {
-  left: 34px;
+  left: 23px;
+}
+
+.checkbox:not(:checked) + .circle svg {
+  fill: #ffb300;
+}
+
+.checkbox:checked + .circle svg {
+  fill: #00b6b6;
 }
 
 .svg {
