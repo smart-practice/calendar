@@ -61,12 +61,35 @@ export const daysOfMonth = (date: Date) => {
       const payload: CalendarCell = { num: newDay, isNeighbour: true }
 
       if (payload.num === 1) {
-        const m = date.getMonth() === 11 ? 0 : date.getMonth()
+        const m = date.getMonth() === 11 ? -1 : date.getMonth()
         payload.child = `${payload.num} ${months[m + 1].slice(0, 3)}`
       }
 
       res[res.length - 1].push(payload)
       newDay++
+    }
+  }
+
+  if (res.length !== 6) {
+    let lastDay = res.at(-1)!.at(-1)!.num
+
+    res.push([])
+
+    while (res.at(-1)!.length !== 7) {
+      const val = lastDay + 1
+      const payload: CalendarCell = { num: val, isNeighbour: true }
+
+      if (payload.num === 1) {
+        const m = date.getMonth() === 11 ? -1 : date.getMonth()
+        payload.child = `${payload.num} ${months[m + 1].slice(0, 3)}`
+      }
+
+      if (val >= days) {
+        lastDay = 0
+      } else {
+        res[res.length - 1].push(payload)
+        lastDay++
+      }
     }
   }
 
