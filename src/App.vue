@@ -1,17 +1,12 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import Header from './components/Header.vue'
 import MainCalendar from './components/MainCalendar.vue'
-import Modal from './components/Modal.vue'
 import { useThemeStore } from './stores/theme'
 import Sidebar from './components/Sidebar.vue'
+import CreateEventModal from './components/CreateEventModal.vue'
 
 const themeStore = useThemeStore()
-
-const dialogVisible = ref(false)
-const showDialog = () => {
-  dialogVisible.value = true
-}
 
 onMounted(() => {
   themeStore.initUserTheme()
@@ -19,12 +14,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <Header @open="showDialog" />
+  <Header />
   <main class="main">
     <Sidebar />
     <MainCalendar />
   </main>
-  <Modal v-model:show="dialogVisible">Content</Modal>
+  <CreateEventModal />
 </template>
 
 <style>

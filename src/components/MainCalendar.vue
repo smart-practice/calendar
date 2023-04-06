@@ -2,8 +2,10 @@
 import Cell from './Cell.vue'
 import { weekdays } from '../resources/date'
 import { useCalendarStore } from '../stores/calendar'
+import { useEventsStore } from '../stores/events'
 
-const store = useCalendarStore()
+const calendarStore = useCalendarStore()
+const eventsStore = useEventsStore()
 </script>
 
 <template>
@@ -12,13 +14,17 @@ const store = useCalendarStore()
       <div v-for="day in weekdays" :key="day">{{ day }}</div>
     </div>
     <div role="grid" class="wrapper">
-      <div v-for="(row, index) in store.cellDaysOfMonth" role="row" class="row">
+      <div
+        v-for="(row, index) in calendarStore.cellDaysOfMonth"
+        role="row"
+        class="row"
+      >
         <Cell
           v-for="item in row"
           :key="`${item.num}-${index}`"
           :is-neighbour="item.isNeighbour"
           :is-today="item.isToday"
-          @neighbour:click="store.clickNeighbour(index)"
+          @click="eventsStore.openCreateModal"
         >
           {{ item.num }}
         </Cell>

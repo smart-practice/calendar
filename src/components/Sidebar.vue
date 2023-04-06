@@ -2,13 +2,17 @@
 import MiniCalendar from './MiniCalendar.vue'
 import Button from './Button.vue'
 import { useAppStore } from '../stores/app'
+import { useEventsStore } from '../stores/events'
 
 const appStore = useAppStore()
+const eventsStore = useEventsStore()
 </script>
 
 <template>
   <div v-show="appStore.isSidebarOpen" class="sidebar">
-    <Button class="btn" full-width>Create</Button>
+    <Button class="btn" @click="eventsStore.openCreateModal" full-width>
+      Create
+    </Button>
     <MiniCalendar />
   </div>
 </template>

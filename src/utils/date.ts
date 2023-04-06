@@ -58,5 +58,18 @@ export const daysOfMonth = (date: Date) => {
     }
   }
 
+  if (res.length !== 6) {
+    const lastNum = res[res.length - 1].at(-1)!.num
+
+    let i = 1
+
+    res.push([])
+
+    while (res[res.length - 1].length !== 7) {
+      res[res.length - 1].push({ num: lastNum + i, isNeighbour: true })
+      i++
+    }
+  }
+
   return res
 }

@@ -8,10 +8,15 @@ import Button from './Button.vue'
 import Logo from './Logo.vue'
 import { useAppStore } from '../stores/app'
 import Switcher from './Switcher.vue'
+import { computed } from 'vue'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()
 const appStore = useAppStore()
+
+const dateTitle = computed(
+  () => `${months[calendarStore.month]} ${calendarStore.year}`,
+)
 </script>
 
 <template>
@@ -45,10 +50,7 @@ const appStore = useAppStore()
         </svg>
       </button>
     </div>
-    <div class="date">
-      {{ months[calendarStore.month] }} {{ calendarStore.year }}
-    </div>
-    <Button view="outlined" @click="$emit('open')">Open modal</Button>
+    <div class="date">{{ dateTitle }}</div>
     <div class="right">
       <Switcher
         :checked="themeStore.theme === 'dark'"

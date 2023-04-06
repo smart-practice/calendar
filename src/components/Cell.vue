@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { CalendarEvent } from '../types/event'
-
 const { view } = withDefaults(
   defineProps<{
     isNeighbour?: boolean
