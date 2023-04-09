@@ -6,10 +6,21 @@ import { useEventsStore } from '../stores/events'
 
 const calendarStore = useCalendarStore()
 const eventsStore = useEventsStore()
+
+const onWheel = (ev: WheelEvent) => {
+  ev.deltaY < 0
+    ? calendarStore.decrementMonth()
+    : calendarStore.incrementMonth()
+}
 </script>
 
 <template>
-  <div role="presentation" class="month">
+  <div
+    role="presentation"
+    class="month"
+    id="main-calendar"
+    @wheel.prevent="onWheel"
+  >
     <div role="row" class="weekday">
       <div v-for="day in weekdays" :key="day">{{ day }}</div>
     </div>
