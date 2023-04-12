@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { CalendarEvent } from '../types/event'
 import EventLabel from './EventLabel.vue'
+import { useEventsStore } from '../stores/events'
 
 const { view, longNum } = withDefaults(
   defineProps<{
@@ -20,6 +21,8 @@ const { view, longNum } = withDefaults(
 )
 
 const numClass = ['num', { longNum }]
+
+const eventsStore = useEventsStore()
 </script>
 
 <template>
@@ -39,7 +42,11 @@ const numClass = ['num', { longNum }]
     </div>
     <div class="body">
       <div v-if="events.length > 0" class="events">
-        <EventLabel v-for="event in events" :view="event.type">
+        <EventLabel
+          v-for="event in events"
+          :view="event.type"
+          @click.stop="eventsStore.openInfoModal(event)"
+        >
           {{ event.title }}
         </EventLabel>
       </div>
