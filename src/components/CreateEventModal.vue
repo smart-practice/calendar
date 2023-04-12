@@ -27,6 +27,8 @@ const saveEventHandler = () => {
       ),
     }
 
+    title.value = ''
+    activeType.value = eventTypes[0]
     eventsStore.createEvent(event)
     eventsStore.closeCreateModal()
   }
