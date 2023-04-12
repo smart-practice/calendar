@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { CalendarEvent } from '../types/event'
+import EventLabel from './EventLabel.vue'
 
 const { view, longNum } = withDefaults(
   defineProps<{
@@ -37,7 +38,9 @@ const numClass = ['num', { longNum }]
       <slot />
     </div>
     <div v-if="events.length > 0" class="events">
-      <p v-for="event in events">{{ event.title }}</p>
+      <EventLabel v-for="event in events" :view="event.type">
+        {{ event.title }}
+      </EventLabel>
     </div>
   </div>
 </template>
@@ -79,11 +82,20 @@ const numClass = ['num', { longNum }]
   color: var(--tx-secondary);
 }
 
+.events {
+  position: absolute;
+  top: 35px;
+  left: 5px;
+  right: 5px;
+  color: #ffffff;
+}
+
 .sm {
   font-size: 12px;
 }
 
 .lg {
+  position: relative;
   padding-top: 4px;
   display: flex;
   flex-direction: column;
