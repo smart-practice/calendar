@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
 <template>
   <div v-if="props.isOpen">
     <div class="overlay" @click="$emit('close')" />
-    <div class="dialog">
+    <div class="dialog" role="dialog" tabindex="-1">
       <header class="dialog-header">
         <Button class="close" :view="'outlined'" @click="$emit('close')">
           <svg>

@@ -4,4 +4,5 @@ export interface CalendarEvent {
   id: number
   title: string
   type: EventType
+  date: Date
 }

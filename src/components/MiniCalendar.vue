@@ -24,7 +24,7 @@ defineProps<{
           :key="`${item.num}-${index}`"
           :is-neighbour="item?.isNeighbour"
           :is-today="item?.isToday"
-          @neighbour:click="store.clickNeighbour(index)"
+          @click:neighbour="store.clickNeighbour(index)"
         >
           {{ item.num }}
         </Cell>

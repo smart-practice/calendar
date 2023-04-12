@@ -1,18 +1,20 @@
 <script lang="ts" setup>
+import { CalendarEvent } from '../types/event'
+
 const { view, longNum } = withDefaults(
   defineProps<{
     isNeighbour?: boolean
     isToday?: boolean
     view?: 'sm' | 'lg'
     longNum?: boolean
-    // events?: CalendarEvent[]
+    events?: CalendarEvent[]
   }>(),
   {
     view: 'lg',
     isNeighbour: false,
     isToday: false,
     longNum: false,
-    // events: () => [],
+    events: () => [],
   },
 )
 
@@ -22,7 +24,11 @@ const numClass = ['num', { longNum }]
 <template>
   <div
     :class="[view, { neighbour: isNeighbour, today: isToday }]"
-    @click="isNeighbour ? $emit('neighbour:click') : $emit('click')"
+    @click.prevent="
+      isNeighbour
+        ? $emit('click:neighbour', $event)
+        : $emit('click:default', $event)
+    "
   >
     <h2 v-if="view === 'lg'" :class="numClass" aria-hidden="true">
       <slot />
@@ -30,7 +36,9 @@ const numClass = ['num', { longNum }]
     <div v-else :class="numClass">
       <slot />
     </div>
-    <!--        <div v-if="events.length > 0" class="events"></div>-->
+    <div v-if="events.length > 0" class="events">
+      <p v-for="event in events">{{ event.title }}</p>
+    </div>
   </div>
 </template>
 
@@ -77,5 +85,7 @@ const numClass = ['num', { longNum }]
 
 .lg {
   padding-top: 4px;
+  display: flex;
+  flex-direction: column;
 }
 </style>

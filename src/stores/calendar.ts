@@ -1,11 +1,16 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { daysOfMonth } from '../utils/date'
+import { useEventsStore } from './events'
 
 export const useCalendarStore = defineStore('calendar', () => {
+  const eventsStore = useEventsStore()
+
   const year = ref(new Date().getFullYear())
   const month = ref(new Date().getMonth())
   const day = ref(new Date().getDate())
+
+  const isSwiping = ref(false)
 
   const incrementMonth = () => {
     if (month.value === 11) {
@@ -14,7 +19,11 @@ export const useCalendarStore = defineStore('calendar', () => {
       return
     }
 
+    isSwiping.value = true
+
     month.value++
+
+    isSwiping.value = false
   }
 
   const decrementMonth = () => {
@@ -36,7 +45,7 @@ export const useCalendarStore = defineStore('calendar', () => {
   }
 
   const cellDaysOfMonth = computed(() =>
-    daysOfMonth(new Date(year.value, month.value)),
+    daysOfMonth(new Date(year.value, month.value), eventsStore.items),
   )
 
   const resetDay = () => {
@@ -49,6 +58,7 @@ export const useCalendarStore = defineStore('calendar', () => {
     year,
     month,
     day,
+    isSwiping,
     cellDaysOfMonth,
     incrementMonth,
     decrementMonth,

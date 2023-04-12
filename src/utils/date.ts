@@ -1,11 +1,14 @@
 import { CalendarCell } from '../types/date'
 import { months } from '../resources/date'
+import { CalendarEvent } from '../types/event'
 
 export const daysInMonth = (year: number, month: number) =>
   new Date(year, month + 1, 0).getDate()
 
-export const daysOfMonth = (date: Date) => {
+export const daysOfMonth = (date: Date, events: CalendarEvent[]) => {
   let res: Array<CalendarCell[]> = [[]]
+
+  console.log(events)
 
   const days = daysInMonth(date.getFullYear(), date.getMonth())
 
@@ -43,6 +46,18 @@ export const daysOfMonth = (date: Date) => {
 
     if (payload.num === 1) {
       payload.child = `${months[date.getMonth()].slice(0, 3)} ${payload.num}`
+    }
+
+    for (let j = 0; j < events.length; j++) {
+      const currentEvent = events[j]
+
+      if (
+        currentEvent.date.getMonth() === date.getMonth() &&
+        currentEvent.date.getFullYear() === date.getFullYear() &&
+        currentEvent.date.getDate() === i
+      ) {
+        payload.events = [currentEvent]
+      }
     }
 
     const lastRow = res[res.length - 1]
