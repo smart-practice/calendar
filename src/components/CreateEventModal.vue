@@ -5,14 +5,31 @@ import Modal from './Modal.vue'
 import Radio from './Radio.vue'
 import { eventTypes } from '../resources/events'
 import Input from './Input.vue'
+import { CalendarEvent } from '../types/event'
+import { useCalendarStore } from '../stores/calendar'
 
 const eventsStore = useEventsStore()
+const calendarStore = useCalendarStore()
 
+const title = ref('')
 const activeType = ref(eventTypes[0])
 
 const saveEventHandler = () => {
-  // save event here
-  eventsStore.closeCreateModal()
+  if (title.value !== '') {
+    const event: CalendarEvent = {
+      id: (eventsStore.items.at(-1)!.id ?? 0) + 1,
+      title: title.value,
+      type: activeType.value,
+      date: new Date(
+        calendarStore.year,
+        calendarStore.month,
+        eventsStore.day as number,
+      ),
+    }
+
+    eventsStore.createEvent(event)
+    eventsStore.closeCreateModal()
+  }
 }
 </script>
 
@@ -23,7 +40,7 @@ const saveEventHandler = () => {
     @save="saveEventHandler"
   >
     <div class="content">
-      <Input placeholder="Add title" />
+      <Input placeholder="Add title" name="title" v-model="title" />
       <div class="radio-wrapper">
         <Radio
           name="type"

@@ -13,8 +13,8 @@ const onWheel = (ev: WheelEvent) => {
     : calendarStore.incrementMonth()
 }
 
-const onCell = () => {
-  eventsStore.openCreateModal()
+const onCell = (day: number) => {
+  eventsStore.openCreateModal(day)
 }
 </script>
 
@@ -42,8 +42,8 @@ const onCell = () => {
           :is-today="item.isToday"
           :long-num="!!item?.child"
           :events="item?.events"
-          @click:default="onCell"
-          @click:neighbour="onCell"
+          @click:default="onCell(item.num)"
+          @click:neighbour="onCell(item.num)"
         >
           {{ item?.child ?? item.num }}
         </Cell>

@@ -8,8 +8,6 @@ export const daysInMonth = (year: number, month: number) =>
 export const daysOfMonth = (date: Date, events: CalendarEvent[]) => {
   let res: Array<CalendarCell[]> = [[]]
 
-  console.log(events)
-
   const days = daysInMonth(date.getFullYear(), date.getMonth())
 
   if (date.getDay() !== 0) {
