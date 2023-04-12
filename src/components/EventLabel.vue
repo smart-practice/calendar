@@ -12,18 +12,21 @@ const { view } = withDefaults(
 </script>
 
 <template>
-  <div id="wrapper" role="button" :class="view">
+  <div class="wrapper" role="button" :class="view">
     <slot />
   </div>
 </template>
 
 <style lang="scss" scoped>
-#wrapper {
+.wrapper {
   cursor: pointer;
   padding-left: 5px;
   padding-top: 2px;
   padding-bottom: 2px;
-  border-radius: 5px;
+  border-radius: 4px;
+  transition: background-color 0.1s;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .event {

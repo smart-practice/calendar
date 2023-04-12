@@ -37,10 +37,12 @@ const numClass = ['num', { longNum }]
     <div v-else :class="numClass">
       <slot />
     </div>
-    <div v-if="events.length > 0" class="events">
-      <EventLabel v-for="event in events" :view="event.type">
-        {{ event.title }}
-      </EventLabel>
+    <div class="body">
+      <div v-if="events.length > 0" class="events">
+        <EventLabel v-for="event in events" :view="event.type">
+          {{ event.title }}
+        </EventLabel>
+      </div>
     </div>
   </div>
 </template>
@@ -53,6 +55,7 @@ const numClass = ['num', { longNum }]
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  margin: 0 auto;
   border-radius: 50%;
   color: var(--tx-primary);
   font-weight: 400;
@@ -82,12 +85,21 @@ const numClass = ['num', { longNum }]
   color: var(--tx-secondary);
 }
 
+.body {
+  position: relative;
+  margin-left: -5px;
+}
+
 .events {
   position: absolute;
-  top: 35px;
+  top: 0;
   left: 5px;
   right: 5px;
   color: #ffffff;
+
+  & > * {
+    margin-top: 5px;
+  }
 }
 
 .sm {

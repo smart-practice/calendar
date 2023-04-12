@@ -54,7 +54,11 @@ export const daysOfMonth = (date: Date, events: CalendarEvent[]) => {
         currentEvent.date.getFullYear() === date.getFullYear() &&
         currentEvent.date.getDate() === i
       ) {
-        payload.events = [currentEvent]
+        if (!payload.events) {
+          payload.events = [currentEvent]
+        } else {
+          payload.events.push(currentEvent)
+        }
       }
     }
 
