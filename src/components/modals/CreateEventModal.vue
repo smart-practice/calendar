@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useEventsStore } from '../stores/events'
-import Modal from './Modal.vue'
-import Radio from './Radio.vue'
-import { eventTypes } from '../resources/events'
-import Input from './Input.vue'
-import { CalendarEvent } from '../types/event'
-import { useCalendarStore } from '../stores/calendar'
+import { useEventsStore } from '../../stores/events'
+import Modal from '../UI/Modal.vue'
+import Radio from '../UI/Radio.vue'
+import { eventTypes } from '../../resources/events'
+import Input from '../UI/Input.vue'
+import { CalendarEvent } from '../../types/event'
+import { useCalendarStore } from '../../stores/calendar'
 
 const eventsStore = useEventsStore()
 const calendarStore = useCalendarStore()

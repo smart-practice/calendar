@@ -52,7 +52,7 @@ const onCell = (day: number) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .month {
   flex-grow: 1;
 }
@@ -71,6 +71,10 @@ const onCell = (day: number) => {
   font-weight: 500;
   text-transform: uppercase;
   font-size: 12px;
+
+  & > * {
+    text-align: center;
+  }
 }
 
 .row {
@@ -90,5 +94,6 @@ const onCell = (day: number) => {
 
 .weekday > * {
   padding-left: 8px;
+  justify-content: center;
 }
 </style>

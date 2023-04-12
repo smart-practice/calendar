@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import sprite from '../assets/[global].svg'
+import sprite from '../../assets/[global].svg'
 
 type Icon = {
   sprite: string
