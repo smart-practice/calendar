@@ -34,7 +34,6 @@ const saveEventHandler = () => {
 
   reset()
   eventsStore.createEvent(event)
-  eventsStore.closeCreateModal()
 }
 </script>
 

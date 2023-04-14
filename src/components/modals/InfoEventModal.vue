@@ -17,7 +17,12 @@ const eventsStore = useEventsStore()
       </span>
     </div>
     <template v-slot:footer>
-      <Button view="outlined" @click="eventsStore.deleteEvent()">Delete</Button>
+      <Button
+        view="outlined"
+        @click="eventsStore.deleteEvent(eventsStore.currentInfoEvent.id)"
+      >
+        Delete
+      </Button>
     </template>
   </Modal>
 </template>

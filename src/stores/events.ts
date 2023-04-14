@@ -32,11 +32,12 @@ export const useEventsStore = defineStore('events', () => {
 
   const createEvent = (event: CalendarEvent) => {
     items.value.push(event)
+    closeCreateModal()
   }
 
-  const deleteEvent = () => {
-    const index = items.value.indexOf(currentInfoEvent.value)
-    items.value.splice(index, 1)
+  const deleteEvent = (id: number) => {
+    const idx = items.value.findIndex(i => i.id === id)
+    items.value.splice(idx, 1)
     closeInfoModal()
   }
 
