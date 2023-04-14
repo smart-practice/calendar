@@ -8,6 +8,21 @@
   --on-primary: #1967d2;
 }
 
+//Event palette
+:root {
+  --event-bg-primary: #039be5;
+  --event-bg-hover: #018bce;
+
+  --task-bg-primary: #4285f4;
+  --task-bg-hover: #316ac7;
+
+  --reminder-bg-primary: #3f51b5;
+  --reminder-bg-hover: #35459f;
+
+  --holiday-bg-primary: #0b8043;
+  --holiday-bg-hover: #0a733b;
+}
+
 // Default scheme
 :root {
   --bg-primary: #fff;

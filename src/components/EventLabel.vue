@@ -4,6 +4,7 @@ import { EventType } from '../types/event'
 const { view } = withDefaults(
   defineProps<{
     view?: EventType
+    icon?: string
   }>(),
   {
     view: 'event',
@@ -13,6 +14,7 @@ const { view } = withDefaults(
 
 <template>
   <div class="wrapper" role="button" :class="view">
+    <img v-if="icon !== ''" class="icon" :src="icon" alt="" />
     <slot />
   </div>
 </template>
@@ -32,32 +34,38 @@ const { view } = withDefaults(
   overflow: hidden;
 }
 
+.icon {
+  width: 12px;
+  height: 12px;
+  margin-right: 2px;
+}
+
 .event {
-  background-color: #039be5;
+  background-color: var(--event-bg-primary);
   &:hover {
-    background-color: #018bce;
+    background-color: var(--event-bg-hover);
   }
 }
 
 .task {
-  background-color: #4285f4;
+  background-color: var(--task-bg-primary);
   &:hover {
-    background-color: #316ac7;
+    background-color: var(--task-bg-hover);
   }
 }
 
 .reminder {
-  background-color: #3f51b5;
+  background-color: var(--reminder-bg-primary);
   &:hover {
-    background-color: #35459f;
+    background-color: var(--reminder-bg-hover);
   }
 }
 
 .holiday {
-  background-color: #0b8043;
+  background-color: var(--holiday-bg-primary);
 
   &:hover {
-    background-color: #0a733b;
+    background-color: var(--holiday-bg-hover);
   }
 }
 </style>

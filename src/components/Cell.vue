@@ -2,6 +2,8 @@
 import { CalendarEvent } from '../types/event'
 import EventLabel from './EventLabel.vue'
 import { useEventsStore } from '../stores/events'
+import bellIcon from '../assets/bell.svg'
+import markIcon from '../assets/mark.svg'
 
 const { view, longNum } = withDefaults(
   defineProps<{
@@ -23,6 +25,17 @@ const { view, longNum } = withDefaults(
 const numClass = ['num', { longNum }]
 
 const eventsStore = useEventsStore()
+
+const iconByType = (type: CalendarEvent['type']) => {
+  switch (type) {
+    case 'task':
+      return markIcon
+    case 'reminder':
+      return bellIcon
+    default:
+      return ''
+  }
+}
 </script>
 
 <template>
@@ -45,6 +58,7 @@ const eventsStore = useEventsStore()
         <EventLabel
           v-for="event in events"
           :view="event.type"
+          :icon="iconByType(event.type)"
           @click.stop="eventsStore.openInfoModal(event)"
         >
           {{ event.title }}

@@ -12,6 +12,7 @@ const eventsStore = useEventsStore()
     @close="eventsStore.closeInfoModal"
   >
     <div class="content">
+      <div class="marker" :class="eventsStore.currentInfoEvent.type"></div>
       <span class="title" role="heading">
         {{ eventsStore.currentInfoEvent.title }}
       </span>
@@ -28,6 +29,34 @@ const eventsStore = useEventsStore()
 </template>
 
 <style lang="scss" scoped>
+.content {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.marker {
+  width: 10px;
+  height: 10px;
+  border-radius: 1px;
+}
+
+.event {
+  background-color: var(--event-bg-primary);
+}
+
+.task {
+  background-color: var(--task-bg-primary);
+}
+
+.reminder {
+  background-color: var(--reminder-bg-primary);
+}
+
+.holiday {
+  background-color: var(--holiday-bg-primary);
+}
+
 .title {
   font-size: 18px;
 }
