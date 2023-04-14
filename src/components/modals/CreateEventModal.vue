@@ -15,24 +15,26 @@ const calendarStore = useCalendarStore()
 const title = ref('')
 const activeType = ref(eventTypes[0])
 
-const saveEventHandler = () => {
-  if (title.value !== '') {
-    const event: CalendarEvent = {
-      id: (eventsStore.items.at(-1)!.id ?? 0) + 1,
-      title: title.value,
-      type: activeType.value,
-      date: new Date(
-        calendarStore.year,
-        calendarStore.month,
-        eventsStore.day as number,
-      ),
-    }
+const reset = () => {
+  title.value = ''
+  activeType.value = eventTypes[0]
+}
 
-    title.value = ''
-    activeType.value = eventTypes[0]
-    eventsStore.createEvent(event)
-    eventsStore.closeCreateModal()
+const saveEventHandler = () => {
+  const event: CalendarEvent = {
+    id: (eventsStore.items.at(-1)!.id ?? 0) + 1,
+    title: title.value || '(No title)',
+    type: activeType.value,
+    date: new Date(
+      calendarStore.year,
+      calendarStore.month,
+      eventsStore.day as number,
+    ),
   }
+
+  reset()
+  eventsStore.createEvent(event)
+  eventsStore.closeCreateModal()
 }
 </script>
 

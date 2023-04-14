@@ -6,11 +6,17 @@ import { useEventsStore } from '../stores/events'
 
 const appStore = useAppStore()
 const eventsStore = useEventsStore()
+
+const todayNumDay = new Date().getDate()
 </script>
 
 <template>
   <div v-show="appStore.isSidebarOpen === '1'" class="sidebar">
-    <Button class="btn" @click="eventsStore.openCreateModal" full-width>
+    <Button
+      class="btn"
+      @click="eventsStore.openCreateModal(todayNumDay)"
+      full-width
+    >
       Create
     </Button>
     <MiniCalendar />

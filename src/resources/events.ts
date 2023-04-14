@@ -12,4 +12,16 @@ export const mockEvents: CalendarEvent[] = [
     id: 4,
     date: new Date(2023, 3, 13),
   },
+  {
+    title: 'Православная Пасха',
+    type: 'holiday',
+    id: 5,
+    date: new Date(2023, 3, 16),
+  },
+  {
+    title: 'Праздник Весны и Труда',
+    type: 'holiday',
+    id: 6,
+    date: new Date(2023, 4, 1),
+  },
 ]

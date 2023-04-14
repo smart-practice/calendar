@@ -20,13 +20,16 @@ const { view } = withDefaults(
 <style lang="scss" scoped>
 .wrapper {
   cursor: pointer;
-  padding-left: 5px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding: 2px 5px;
   border-radius: 4px;
   transition: background-color 0.1s;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .event {
@@ -47,6 +50,14 @@ const { view } = withDefaults(
   background-color: #3f51b5;
   &:hover {
     background-color: #35459f;
+  }
+}
+
+.holiday {
+  background-color: #0b8043;
+
+  &:hover {
+    background-color: #0a733b;
   }
 }
 </style>

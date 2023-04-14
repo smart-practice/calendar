@@ -100,12 +100,12 @@ const eventsStore = useEventsStore()
 .events {
   position: absolute;
   top: 0;
-  left: 5px;
-  right: 5px;
+  left: 0;
+  right: 8px;
   color: #ffffff;
 
   & > * {
-    margin-top: 5px;
+    margin-top: 2px;
   }
 }
 
