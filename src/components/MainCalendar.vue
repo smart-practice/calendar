@@ -12,12 +12,17 @@ const onWheel = (ev: WheelEvent) => {
     ? calendarStore.decrementMonth()
     : calendarStore.incrementMonth()
 }
+
+const onCell = (day: number) => {
+  eventsStore.openCreateModal(day)
+}
 </script>
 
 <template>
   <div
     role="presentation"
     class="month"
+    :class="{ active: calendarStore.isSwiping }"
     id="main-calendar"
     @wheel.prevent="onWheel"
   >
@@ -36,7 +41,9 @@ const onWheel = (ev: WheelEvent) => {
           :is-neighbour="item.isNeighbour"
           :is-today="item.isToday"
           :long-num="!!item?.child"
-          @click="eventsStore.openCreateModal"
+          :events="item?.events"
+          @click:default="onCell(item.num)"
+          @click:neighbour="onCell(item.num)"
         >
           {{ item?.child ?? item.num }}
         </Cell>
@@ -45,7 +52,7 @@ const onWheel = (ev: WheelEvent) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .month {
   flex-grow: 1;
 }
@@ -64,6 +71,10 @@ const onWheel = (ev: WheelEvent) => {
   font-weight: 500;
   text-transform: uppercase;
   font-size: 12px;
+
+  & > * {
+    text-align: center;
+  }
 }
 
 .row {
@@ -83,5 +94,6 @@ const onWheel = (ev: WheelEvent) => {
 
 .weekday > * {
   padding-left: 8px;
+  justify-content: center;
 }
 </style>

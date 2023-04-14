@@ -5,10 +5,10 @@ import globalSprite from '../assets/[global].svg'
 import { months } from '../resources/date'
 import { useCalendarStore } from '../stores/calendar'
 import { useThemeStore } from '../stores/theme'
-import Button from './Button.vue'
+import Button from './UI/Button.vue'
 import Logo from './Logo.vue'
 import { useAppStore } from '../stores/app'
-import Switcher from './Switcher.vue'
+import Switcher from './UI/Switcher.vue'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()

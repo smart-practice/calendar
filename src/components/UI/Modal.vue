@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import globalSprites from '../assets/[global].svg'
+import globalSprites from '../../assets/[global].svg'
 import Button from './Button.vue'
 
 const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
 <template>
   <div v-if="props.isOpen">
     <div class="overlay" @click="$emit('close')" />
-    <div class="dialog">
+    <div class="dialog" role="dialog" tabindex="-1">
       <header class="dialog-header">
         <Button class="close" :view="'outlined'" @click="$emit('close')">
           <svg>
@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
         <slot />
       </div>
       <footer class="dialog-footer">
-        <Button @click="$emit('save')">Save</Button>
+        <slot name="footer" />
       </footer>
     </div>
   </div>
