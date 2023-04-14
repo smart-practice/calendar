@@ -36,9 +36,9 @@ const eventsStore = useEventsStore()
 }
 
 .marker {
-  width: 10px;
-  height: 10px;
-  border-radius: 1px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
 }
 
 .event {

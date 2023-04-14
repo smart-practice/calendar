@@ -8,11 +8,13 @@ import Input from '../UI/Input.vue'
 import { CalendarEvent } from '../../types/event'
 import { useCalendarStore } from '../../stores/calendar'
 import Button from '../UI/Button.vue'
+import Textarea from '../UI/Textarea.vue'
 
 const eventsStore = useEventsStore()
 const calendarStore = useCalendarStore()
 
 const title = ref('')
+const description = ref('')
 const activeType = ref(eventTypes[0])
 
 const reset = () => {
@@ -55,7 +57,11 @@ const saveEventHandler = () => {
           {{ title }}
         </Radio>
       </div>
-      <textarea class="desc">123</textarea>
+      <Textarea
+        v-if="activeType === 'task'"
+        v-model="description"
+        :name="title"
+      />
     </div>
     <template v-slot:footer>
       <Button @click="saveEventHandler">Save</Button>
@@ -71,22 +77,5 @@ const saveEventHandler = () => {
 
 .content {
   padding-left: 50px;
-}
-
-.desc {
-  margin-top: 15px;
-  display: block;
-  width: 100%;
-  background: transparent;
-  border: 1px solid var(--hairline);
-  border-radius: 5px;
-  padding: 8px;
-  color: var(--tx-primary);
-  outline: none;
-  resize: none;
-
-  &::placeholder {
-    color: var(--tx-secondary);
-  }
 }
 </style>
