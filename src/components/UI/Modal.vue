@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
         <slot />
       </div>
       <footer class="dialog-footer">
-        <Button @click="$emit('save')">Save</Button>
+        <slot name="footer" />
       </footer>
     </div>
   </div>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useEventsStore } from '../../stores/events'
 import Modal from '../UI/Modal.vue'
+import Button from '../UI/Button.vue'
 
 const eventsStore = useEventsStore()
 </script>
@@ -11,9 +12,18 @@ const eventsStore = useEventsStore()
     @close="eventsStore.closeInfoModal"
   >
     <div class="content">
-      {{ eventsStore.currentInfoEvent.type }}
+      <span class="title" role="heading">
+        {{ eventsStore.currentInfoEvent.title }}
+      </span>
     </div>
+    <template v-slot:footer>
+      <Button view="outlined">Delete</Button>
+    </template>
   </Modal>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.title {
+  font-size: 18px;
+}
+</style>
