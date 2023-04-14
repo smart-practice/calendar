@@ -34,6 +34,12 @@ export const useEventsStore = defineStore('events', () => {
     items.value.push(event)
   }
 
+  const deleteEvent = () => {
+    const index = items.value.indexOf(currentInfoEvent.value)
+    items.value.splice(index, 1)
+    closeInfoModal()
+  }
+
   return {
     items,
     day,
@@ -45,5 +51,6 @@ export const useEventsStore = defineStore('events', () => {
     openInfoModal,
     closeInfoModal,
     createEvent,
+    deleteEvent,
   }
 })
