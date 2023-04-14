@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useCalendarStore } from '../stores/calendar'
 import { months, weekdays } from '../resources/date'
-import Cell from './Cell.vue'
+import Cell from './parts/Cell.vue'
 const store = useCalendarStore()
 
 defineProps<{

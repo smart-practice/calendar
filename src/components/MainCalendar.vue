@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Cell from './Cell.vue'
+import Cell from './parts/Cell.vue'
 import { weekdays } from '../resources/date'
 import { useCalendarStore } from '../stores/calendar'
 import { useEventsStore } from '../stores/events'
@@ -82,6 +82,10 @@ const onCell = (day: number) => {
   flex: 1 1 auto;
   width: 100%;
   border-top: 1px solid var(--hairline);
+
+  &:first-child {
+    border-top: 0;
+  }
 }
 
 .weekday > *,

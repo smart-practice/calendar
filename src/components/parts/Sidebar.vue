@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import MiniCalendar from './MiniCalendar.vue'
-import Button from './UI/Button.vue'
-import { useAppStore } from '../stores/app'
-import { useEventsStore } from '../stores/events'
+import MiniCalendar from '../MiniCalendar.vue'
+import Button from '../UI/Button.vue'
+import { useAppStore } from '../../stores/app'
+import { useEventsStore } from '../../stores/events'
 
 const appStore = useAppStore()
 const eventsStore = useEventsStore()

@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import arrowSprite from '../assets/[arrows].svg'
-import globalSprite from '../assets/[global].svg'
-import { months } from '../resources/date'
-import { useCalendarStore } from '../stores/calendar'
-import { useThemeStore } from '../stores/theme'
-import Button from './UI/Button.vue'
+import arrowSprite from '../../assets/[arrows].svg'
+import globalSprite from '../../assets/[global].svg'
+import { months } from '../../resources/date'
+import { useCalendarStore } from '../../stores/calendar'
+import { useThemeStore } from '../../stores/theme'
+import Button from '../UI/Button.vue'
 import Logo from './Logo.vue'
-import { useAppStore } from '../stores/app'
-import Switcher from './UI/Switcher.vue'
+import { useAppStore } from '../../stores/app'
+import Switcher from '../UI/Switcher.vue'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()

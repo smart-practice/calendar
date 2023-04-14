@@ -55,6 +55,7 @@ const saveEventHandler = () => {
           {{ title }}
         </Radio>
       </div>
+      <textarea class="desc">123</textarea>
     </div>
     <template v-slot:footer>
       <Button @click="saveEventHandler">Save</Button>
@@ -70,5 +71,22 @@ const saveEventHandler = () => {
 
 .content {
   padding-left: 50px;
+}
+
+.desc {
+  margin-top: 15px;
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--hairline);
+  border-radius: 5px;
+  padding: 8px;
+  color: var(--tx-primary);
+  outline: none;
+  resize: none;
+
+  &::placeholder {
+    color: var(--tx-secondary);
+  }
 }
 </style>
