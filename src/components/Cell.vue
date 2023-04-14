@@ -4,6 +4,7 @@ import EventLabel from './EventLabel.vue'
 import { useEventsStore } from '../stores/events'
 import bellIcon from '../assets/bell.svg'
 import markIcon from '../assets/mark.svg'
+import clockIcon from '../assets/clock.svg'
 
 const { view, longNum } = withDefaults(
   defineProps<{
@@ -28,6 +29,8 @@ const eventsStore = useEventsStore()
 
 const iconByType = (type: CalendarEvent['type']) => {
   switch (type) {
+    case 'event':
+      return clockIcon
     case 'task':
       return markIcon
     case 'reminder':
