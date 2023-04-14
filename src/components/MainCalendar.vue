@@ -41,7 +41,7 @@ const onCell = (day: number) => {
           :is-neighbour="item.isNeighbour"
           :is-today="item.isToday"
           :long-num="!!item?.child"
-          :events="item?.events"
+          :events="item?.events ?? []"
           @click:default="onCell(item.num)"
           @click:neighbour="onCell(item.num)"
         >

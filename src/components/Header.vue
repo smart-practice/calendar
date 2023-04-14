@@ -17,6 +17,11 @@ const appStore = useAppStore()
 const dateTitle = computed(
   () => `${months[calendarStore.month]} ${calendarStore.year}`,
 )
+
+const switcherPayloads = [
+  { sprite: globalSprite, id: 'moon', mode: true },
+  { sprite: globalSprite, id: 'sun', mode: false },
+]
 </script>
 
 <template>
@@ -54,10 +59,7 @@ const dateTitle = computed(
     <div class="right">
       <Switcher
         :checked="themeStore.theme === 'dark'"
-        :icons="[
-          { sprite: globalSprite, id: 'moon', mode: true },
-          { sprite: globalSprite, id: 'sun', mode: false },
-        ]"
+        :icons="switcherPayloads"
         @change="themeStore.toggleTheme"
       />
     </div>

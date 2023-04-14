@@ -12,15 +12,15 @@ const eventsStore = useEventsStore()
     @close="eventsStore.closeInfoModal"
   >
     <div class="content">
-      <div class="marker" :class="eventsStore.currentInfoEvent.type"></div>
+      <div class="marker" :class="eventsStore.currentInfoEvent!.type"></div>
       <span class="title" role="heading">
-        {{ eventsStore.currentInfoEvent.title }}
+        {{ eventsStore.currentInfoEvent!.title }}
       </span>
     </div>
     <template v-slot:footer>
       <Button
         view="outlined"
-        @click="eventsStore.deleteEvent(eventsStore.currentInfoEvent.id)"
+        @click="eventsStore.deleteEvent(eventsStore.currentInfoEvent!.id)"
       >
         Delete
       </Button>

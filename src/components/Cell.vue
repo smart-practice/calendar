@@ -12,14 +12,13 @@ const { view, longNum } = withDefaults(
     isToday?: boolean
     view?: 'sm' | 'lg'
     longNum?: boolean
-    events?: CalendarEvent[]
+    events: CalendarEvent[]
   }>(),
   {
     view: 'lg',
     isNeighbour: false,
     isToday: false,
     longNum: false,
-    events: () => [],
   },
 )
 
