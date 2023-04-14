@@ -24,6 +24,7 @@ defineProps<{
           :key="`${item.num}-${index}`"
           :is-neighbour="item?.isNeighbour"
           :is-today="item?.isToday"
+          :events="[]"
           @click:neighbour="store.clickNeighbour(index)"
         >
           {{ item.num }}
