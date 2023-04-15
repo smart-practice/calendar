@@ -67,7 +67,6 @@ const saveEventHandler = () => {
       <Textarea
         v-if="activeType === 'task'"
         placeholder="Task description..."
-        :name="title"
         v-model="desc"
       />
     </div>

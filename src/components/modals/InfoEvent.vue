@@ -2,6 +2,7 @@
 import { useEventsStore } from '../../stores/events'
 import Modal from '../UI/Modal.vue'
 import Button from '../UI/Button.vue'
+import { dateTitle } from '../../utils/date'
 
 const eventsStore = useEventsStore()
 </script>
@@ -11,16 +12,24 @@ const eventsStore = useEventsStore()
     :is-open="eventsStore.isInfoModalOpen"
     @close="eventsStore.closeInfoModal"
   >
-    <div>
+    <div class="wrapper">
       <div class="head">
         <div class="marker" :class="eventsStore.currentInfoEvent!.type" />
         <span class="title" role="heading">
           {{ eventsStore.currentInfoEvent!.title }}
         </span>
       </div>
-
       <p class="desc">
         {{ eventsStore.currentInfoEvent!.desc }}
+      </p>
+      <p class="date">
+        {{
+          dateTitle(
+            eventsStore.currentInfoEvent!.date.getDay(),
+            eventsStore.currentInfoEvent!.date.getMonth(),
+            eventsStore.currentInfoEvent!.date.getDate(),
+          )
+        }}
       </p>
     </div>
     <template v-slot:footer>
@@ -47,11 +56,6 @@ const eventsStore = useEventsStore()
   margin-right: 5px;
 }
 
-.desc {
-  margin-top: 8px;
-  font-size: 13px;
-}
-
 .event {
   background-color: var(--event-bg-primary);
 }
@@ -68,7 +72,24 @@ const eventsStore = useEventsStore()
   background-color: var(--holiday-bg-primary);
 }
 
+.wrapper {
+  padding-left: 20px;
+}
+
 .title {
   font-size: 18px;
+  font-weight: 500;
+}
+
+.desc {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.date {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 500;
 }
 </style>

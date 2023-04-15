@@ -82,7 +82,6 @@ const iconByType = (type: CalendarEvent['type']) => {
   border-radius: 50%;
   color: var(--tx-primary);
   font-weight: 400;
-  font-size: 14px;
 
   &:hover {
     background-color: var(--bg-secondary);

@@ -1,9 +1,16 @@
 import { CalendarCell } from '../types/date'
-import { months } from '../resources/date'
+import { months, weekdays } from '../resources/date'
 import { CalendarEvent } from '../types/event'
 
 export const daysInMonth = (year: number, month: number) =>
   new Date(year, month + 1, 0).getDate()
+
+export const dateTitle = (weekday: number, month: number, day: number) => {
+  const w = weekdays[weekday]
+  const m = months[month]
+
+  return `${w}, ${m} ${day}`
+}
 
 export const daysOfMonth = (date: Date, events: CalendarEvent[]) => {
   let res: Array<CalendarCell[]> = [[]]

@@ -36,6 +36,7 @@ const onCell = (day: number) => {
         class="row"
       >
         <Cell
+          class="cell"
           v-for="item in row"
           :key="`${item.num}-${index}`"
           :is-neighbour="item.isNeighbour"
@@ -75,6 +76,10 @@ const onCell = (day: number) => {
   & > * {
     text-align: center;
   }
+}
+
+.cell {
+  font-size: 14px;
 }
 
 .row {
