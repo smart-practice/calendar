@@ -5,4 +5,5 @@ export interface CalendarEvent {
   title: string
   type: EventType
   date: Date
+  desc?: string
 }

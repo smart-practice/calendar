@@ -11,11 +11,17 @@ const eventsStore = useEventsStore()
     :is-open="eventsStore.isInfoModalOpen"
     @close="eventsStore.closeInfoModal"
   >
-    <div class="content">
-      <div class="marker" :class="eventsStore.currentInfoEvent!.type"></div>
-      <span class="title" role="heading">
-        {{ eventsStore.currentInfoEvent!.title }}
-      </span>
+    <div>
+      <div class="head">
+        <div class="marker" :class="eventsStore.currentInfoEvent!.type" />
+        <span class="title" role="heading">
+          {{ eventsStore.currentInfoEvent!.title }}
+        </span>
+      </div>
+
+      <p class="desc">
+        {{ eventsStore.currentInfoEvent!.desc }}
+      </p>
     </div>
     <template v-slot:footer>
       <Button
@@ -29,16 +35,21 @@ const eventsStore = useEventsStore()
 </template>
 
 <style lang="scss" scoped>
-.content {
+.head {
   display: flex;
   align-items: center;
-  gap: 5px;
 }
 
 .marker {
   width: 15px;
   height: 15px;
   border-radius: 50%;
+  margin-right: 5px;
+}
+
+.desc {
+  margin-top: 8px;
+  font-size: 13px;
 }
 
 .event {

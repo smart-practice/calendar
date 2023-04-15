@@ -3,7 +3,8 @@ import { computed, defineProps } from 'vue'
 
 const props = defineProps<{
   modelValue: string
-  name: string
+  placeholder?: string
+  name?: string
 }>()
 
 const emit = defineEmits(['update:modelValue'])
@@ -19,7 +20,12 @@ const value = computed({
 </script>
 
 <template>
-  <textarea class="desc" :name="props.name" v-model="value" />
+  <textarea
+    class="desc"
+    :name="props?.name ?? ''"
+    :placeholder="props.placeholder"
+    v-model="value"
+  />
 </template>
 
 <style lang="scss" scoped>

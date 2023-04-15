@@ -14,15 +14,18 @@ const eventsStore = useEventsStore()
 const calendarStore = useCalendarStore()
 
 const title = ref('')
-const description = ref('')
+const desc = ref('')
 const activeType = ref(eventTypes[0])
 
 const reset = () => {
   title.value = ''
+  desc.value = ''
   activeType.value = eventTypes[0]
 }
 
 const saveEventHandler = () => {
+  const shouldAddDesc = activeType.value === 'task'
+
   const event: CalendarEvent = {
     id: (eventsStore.items.at(-1)!.id ?? 0) + 1,
     title: title.value || '(No title)',
@@ -32,6 +35,10 @@ const saveEventHandler = () => {
       calendarStore.month,
       eventsStore.day as number,
     ),
+  }
+
+  if (shouldAddDesc) {
+    event.desc = desc.value
   }
 
   reset()
@@ -59,8 +66,9 @@ const saveEventHandler = () => {
       </div>
       <Textarea
         v-if="activeType === 'task'"
-        v-model="description"
+        placeholder="Task description..."
         :name="title"
+        v-model="desc"
       />
     </div>
     <template v-slot:footer>
