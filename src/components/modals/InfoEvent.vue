@@ -25,9 +25,9 @@ const eventsStore = useEventsStore()
       <p class="date">
         {{
           dateTitle(
-            eventsStore.currentInfoEvent!.date.getDay(),
-            eventsStore.currentInfoEvent!.date.getMonth(),
-            eventsStore.currentInfoEvent!.date.getDate(),
+            eventsStore.currentInfoEvent!.year,
+            eventsStore.currentInfoEvent!.month,
+            eventsStore.currentInfoEvent!.day,
           )
         }}
       </p>

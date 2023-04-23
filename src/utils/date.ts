@@ -1,121 +1,155 @@
 import { CalendarCell } from '../types/date'
 import { months, weekdays } from '../resources/date'
 import { CalendarEvent } from '../types/event'
+import { chunkArrayByStep } from './common'
 
-export const daysInMonth = (year: number, month: number) =>
-  new Date(year, month + 1, 0).getDate()
-
-export const dateTitle = (weekday: number, month: number, day: number) => {
-  const w = weekdays[weekday]
+export function dateTitle(year: number, month: number, day: number) {
+  const date = new Date(year, month, day)
+  const w = weekdays[date.getDay()]
   const m = months[month]
 
   return `${w}, ${m} ${day}`
 }
 
-export const daysOfMonth = (date: Date, events: CalendarEvent[]) => {
-  let res: Array<CalendarCell[]> = [[]]
+export function daysInMonth(date: Date) {
+  return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+}
 
-  const days = daysInMonth(date.getFullYear(), date.getMonth())
+export function prevMonthDate(date: Date) {
+  const prev = new Date(date)
+  prev.setDate(0)
+  return prev
+}
 
-  if (date.getDay() !== 0) {
-    // Copy date
-    const prev = new Date(date)
-    prev.setDate(0)
+export function prevMonthIdx(date: Date) {
+  const m = date.getMonth()
+  return m === 0 ? 11 : m - 1
+}
 
-    let i = 0
+export function nextMonthIdx(date: Date) {
+  return date.getMonth() === 11 ? 0 : date.getMonth() + 1
+}
 
-    while (i !== prev.getDay() + 1) {
-      // TODO: rewrite to push [O(1)]
-      res[0].unshift({
-        num: prev.getDate() - i,
-        isNeighbour: true,
-      })
-      i++
-    }
-  }
+// TODO: Rewrite to reduce
+export function dayCellsWithEvents(
+  days: CalendarCell[],
+  events: CalendarEvent[],
+) {
+  const res = days
 
-  const today = new Date()
-
-  for (let i = 1; i <= days; i++) {
-    const payload: CalendarCell = {
-      num: i,
-    }
-
-    if (
-      i === today.getDate() &&
-      today.getMonth() === date.getMonth() &&
-      today.getFullYear() === date.getFullYear()
-    ) {
-      payload.isToday = true
-    }
-
-    if (payload.num === 1) {
-      payload.child = `${months[date.getMonth()].slice(0, 3)} ${payload.num}`
-    }
+  for (let i = 0; i < res.length; i++) {
+    const cell = res[i]
 
     for (let j = 0; j < events.length; j++) {
-      const currentEvent = events[j]
+      const event = events[j]
+      const { year, month, day } = event
 
-      if (
-        currentEvent.date.getMonth() === date.getMonth() &&
-        currentEvent.date.getFullYear() === date.getFullYear() &&
-        currentEvent.date.getDate() === i
-      ) {
-        if (!payload.events) {
-          payload.events = [currentEvent]
+      if (cell.year === year && cell.month === month && cell.num === day) {
+        if (Array.isArray(res[i].events)) {
+          res[i].events!.push(event)
         } else {
-          payload.events.push(currentEvent)
+          res[i].events = [event]
         }
-      }
-    }
-
-    const lastRow = res[res.length - 1]
-
-    if (lastRow.length && lastRow.length % 7 === 0) {
-      res.push([payload])
-    } else {
-      lastRow.push(payload)
-    }
-  }
-
-  if (res[res.length - 1].length !== 7) {
-    let newDay = 1
-
-    while (res[res.length - 1].length !== 7) {
-      const payload: CalendarCell = { num: newDay, isNeighbour: true }
-
-      if (payload.num === 1) {
-        const m = date.getMonth() === 11 ? -1 : date.getMonth()
-        payload.child = `${months[m + 1].slice(0, 3)} ${payload.num}`
-      }
-
-      res[res.length - 1].push(payload)
-      newDay++
-    }
-  }
-
-  if (res.length !== 6) {
-    let lastDay = res.at(-1)!.at(-1)!.num
-
-    res.push([])
-
-    while (res.at(-1)!.length !== 7) {
-      const val = lastDay + 1
-      const payload: CalendarCell = { num: val, isNeighbour: true }
-
-      if (payload.num === 1) {
-        const m = date.getMonth() === 11 ? -1 : date.getMonth()
-        payload.child = `${months[m + 1].slice(0, 3)} ${payload.num}`
-      }
-
-      if (val >= days) {
-        lastDay = 0
-      } else {
-        res[res.length - 1].push(payload)
-        lastDay++
       }
     }
   }
 
   return res
+}
+
+export function markToday(items: CalendarCell[]) {
+  const today = new Date()
+  const year = today.getFullYear()
+  const month = today.getMonth()
+  const day = today.getDate()
+
+  return items.map(i => {
+    console.log(i.year === year && i.month === month && i.num === day)
+    if (i.year === year && i.month === month && i.num === day) {
+      return { ...i, isToday: true }
+    }
+    return i
+  })
+}
+
+export function dayCellsByDate(date: Date, events: CalendarEvent[]) {
+  const ROWS = 6
+  const COLS = 7
+  const CELLS = ROWS * COLS
+
+  const res: CalendarCell[] = []
+
+  const idxFirstWeekend = date.getDay()
+
+  // Заполнение левых соседей
+  if (idxFirstWeekend !== 0) {
+    const lastDayOfPrevMonth = prevMonthDate(date).getDate()
+
+    const month = prevMonthIdx(date)
+    const year = date.getFullYear() + (month === 0 ? -1 : 0)
+
+    let i = idxFirstWeekend
+
+    while (--i !== -1) {
+      const num = lastDayOfPrevMonth - i
+      res.push({
+        isNeighbour: true,
+        month,
+        year,
+        num,
+      })
+    }
+  }
+
+  // Заполнение текущего месяца
+  {
+    const month = date.getMonth()
+    let i = 1
+
+    while (i !== daysInMonth(date) + 1) {
+      const payload: CalendarCell = {
+        isNeighbour: false,
+        year: date.getFullYear(),
+        num: i,
+        month,
+      }
+
+      console.log(payload)
+
+      if (i === 1) {
+        payload.child = `${months[month].substring(0, 3)} ${i}`
+      }
+
+      res.push(payload)
+      i++
+    }
+  }
+
+  // Заполнение правых соседей
+  {
+    const month = nextMonthIdx(date)
+    const year = date.getFullYear() + (month === 0 ? 1 : 0)
+
+    let i = 0
+
+    while (res.length !== CELLS) {
+      const payload: CalendarCell = {
+        isNeighbour: true,
+        num: ++i,
+        year,
+        month,
+      }
+
+      if (i === 1) {
+        payload.child = `${months[month].substring(0, 3)} ${i}`
+      }
+
+      res.push(payload)
+    }
+  }
+
+  const cellWithMarkedToday = markToday(res)
+  const cellsWithEvents = dayCellsWithEvents(cellWithMarkedToday, events)
+
+  return chunkArrayByStep(cellsWithEvents, COLS)
 }

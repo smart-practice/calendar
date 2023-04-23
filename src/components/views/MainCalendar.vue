@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import Cell from './parts/Cell.vue'
-import { weekdays } from '../resources/date'
-import { useCalendarStore } from '../stores/calendar'
-import { useEventsStore } from '../stores/events'
+import Cell from '../parts/Cell.vue'
+import { weekdays } from '../../resources/date'
+import { useCalendarStore } from '../../stores/calendar'
+import { useEventsStore } from '../../stores/events'
+import { CalendarCell } from '../../types/date'
 
 const calendarStore = useCalendarStore()
 const eventsStore = useEventsStore()
@@ -13,8 +14,12 @@ const onWheel = (ev: WheelEvent) => {
     : calendarStore.incrementMonth()
 }
 
-const onCell = (day: number) => {
-  eventsStore.openCreateModal(day)
+const onCell = (item: CalendarCell) => {
+  eventsStore.openCreateModal({
+    year: item.year,
+    month: item.month,
+    day: item.num,
+  })
 }
 </script>
 
@@ -43,8 +48,8 @@ const onCell = (day: number) => {
           :is-today="item.isToday"
           :long-num="!!item?.child"
           :events="item?.events ?? []"
-          @click:default="onCell(item.num)"
-          @click:neighbour="onCell(item.num)"
+          @click:default="onCell(item)"
+          @click:neighbour="onCell(item)"
         >
           {{ item?.child ?? item.num }}
         </Cell>

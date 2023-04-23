@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { daysOfMonth } from '../utils/date'
+import { dayCellsByDate } from '../utils/date'
 import { useEventsStore } from './events'
 
 export const useCalendarStore = defineStore('calendar', () => {
@@ -45,7 +45,7 @@ export const useCalendarStore = defineStore('calendar', () => {
   }
 
   const cellDaysOfMonth = computed(() =>
-    daysOfMonth(new Date(year.value, month.value), eventsStore.items),
+    dayCellsByDate(new Date(year.value, month.value), eventsStore.items),
   )
 
   const resetDay = () => {

@@ -1,22 +1,24 @@
 <script lang="ts" setup>
-import MiniCalendar from '../MiniCalendar.vue'
+import MiniCalendar from '../views/MiniCalendar.vue'
 import Button from '../UI/Button.vue'
 import { useAppStore } from '../../stores/app'
 import { useEventsStore } from '../../stores/events'
+import { CreateEvent } from '../../types/event'
 
 const appStore = useAppStore()
 const eventsStore = useEventsStore()
 
-const todayNumDay = new Date().getDate()
+const date = new Date()
+const today: CreateEvent = {
+  year: date.getFullYear(),
+  month: date.getMonth(),
+  day: date.getDate(),
+}
 </script>
 
 <template>
   <div v-show="appStore.isSidebarOpen === '1'" class="sidebar">
-    <Button
-      class="btn"
-      @click="eventsStore.openCreateModal(todayNumDay)"
-      full-width
-    >
+    <Button class="btn" @click="eventsStore.openCreateModal(today)" full-width>
       Create
     </Button>
     <MiniCalendar />
