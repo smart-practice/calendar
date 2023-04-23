@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { EventType } from '../types/event'
+import { EventType } from '../../types/event'
 
 const { view } = withDefaults(
   defineProps<{

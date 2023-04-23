@@ -4,9 +4,9 @@ import { onMounted } from 'vue'
 import { useThemeStore } from './stores/theme'
 import { useAppStore } from './stores/app'
 
-import Header from './components/Header.vue'
-import MainCalendar from './components/MainCalendar.vue'
-import Sidebar from './components/Sidebar.vue'
+import Header from './components/parts/Header.vue'
+import MainCalendar from './components/views/MainCalendar.vue'
+import Sidebar from './components/parts/Sidebar.vue'
 import CreateEvent from './components/modals/CreateEvent.vue'
 import InfoEvent from './components/modals/InfoEvent.vue'
 

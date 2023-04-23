@@ -1,22 +1,22 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { mockEvents } from '../resources/events'
-import { CalendarEvent } from '../types/event'
+import { CalendarEvent, CreateEvent } from '../types/event'
 
 export const useEventsStore = defineStore('events', () => {
   const isCreateModalOpen = ref(false)
   const isInfoModalOpen = ref(false)
   const items = ref([...mockEvents])
-  const day = ref<number | null>(null)
+  const createEventCell = ref<CreateEvent | null>(null)
   const currentInfoEvent = ref<CalendarEvent | null>(null)
 
-  const openCreateModal = (num: number) => {
-    day.value = num
+  const openCreateModal = (item: CreateEvent) => {
+    createEventCell.value = item
     isCreateModalOpen.value = true
   }
 
   const closeCreateModal = () => {
-    day.value = null
+    createEventCell.value = null
     isCreateModalOpen.value = false
   }
 
@@ -43,7 +43,7 @@ export const useEventsStore = defineStore('events', () => {
 
   return {
     items,
-    day,
+    createEventCell,
     currentInfoEvent,
     isCreateModalOpen,
     isInfoModalOpen,

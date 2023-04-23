@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { CalendarEvent } from '../types/event'
+import { CalendarEvent } from '../../types/event'
 import EventLabel from './EventLabel.vue'
-import { useEventsStore } from '../stores/events'
-import bellIcon from '../assets/bell.svg'
-import markIcon from '../assets/mark.svg'
-import clockIcon from '../assets/clock.svg'
+import { useEventsStore } from '../../stores/events'
+import bellIcon from '../../assets/bell.svg'
+import markIcon from '../../assets/mark.svg'
+import clockIcon from '../../assets/clock.svg'
 
 const { view, longNum } = withDefaults(
   defineProps<{
@@ -82,7 +82,6 @@ const iconByType = (type: CalendarEvent['type']) => {
   border-radius: 50%;
   color: var(--tx-primary);
   font-weight: 400;
-  font-size: 14px;
 
   &:hover {
     background-color: var(--bg-secondary);

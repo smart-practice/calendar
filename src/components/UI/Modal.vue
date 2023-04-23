@@ -56,6 +56,7 @@ const props = withDefaults(defineProps<{ isOpen: boolean }>(), {
   min-width: 460px;
   overflow: hidden;
   border-radius: 8px;
+  max-width: 500px;
 }
 
 .dialog-header {
