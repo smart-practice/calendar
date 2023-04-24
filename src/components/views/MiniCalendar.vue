@@ -14,7 +14,9 @@ defineProps<{
   <div class="mini-calendar">
     <span class="title">{{ months[store.month] }} {{ store.year }}</span>
     <div class="weekday">
-      <div v-for="[day] in weekdays" :key="day">{{ day }}</div>
+      <div v-for="[day] in weekdays" :key="day" role="columnheader">
+        {{ day }}
+      </div>
     </div>
     <div role="grid" class="wrapper">
       <div v-for="(row, index) in store.cellDaysOfMonth" role="row" class="row">
@@ -38,11 +40,13 @@ defineProps<{
 <style lang="scss" scoped>
 .mini-calendar {
   color: var(--tx-primary);
+  width: 100%;
 }
 
 .title {
-  font-size: 12px;
+  font-size: 14px;
   margin-left: 10px;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
 }
 
 .weekday {
@@ -50,6 +54,7 @@ defineProps<{
   color: #747474;
   font-size: 10px;
   margin-bottom: 5px;
+  font-weight: 500;
 
   & > * {
     width: 25px;
@@ -61,6 +66,11 @@ defineProps<{
 
 .cell {
   font-size: 10px;
+}
+
+.weekday,
+.row {
+  justify-content: space-between;
 }
 
 .row {

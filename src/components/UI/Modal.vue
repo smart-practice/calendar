@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import globalSprites from '../../assets/[global].svg'
+import globalSprites from '../../assets/sprites/[global].svg'
 import Button from './Button.vue'
 
 const props = withDefaults(defineProps<{ isOpen: boolean }>(), {

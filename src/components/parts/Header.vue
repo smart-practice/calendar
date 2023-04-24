@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import arrowSprite from '../../assets/[arrows].svg'
-import globalSprite from '../../assets/[global].svg'
+import arrowSprite from '../../assets/sprites/[arrows].svg'
+import globalSprite from '../../assets/sprites/[global].svg'
 import { months } from '../../resources/date'
 import { useCalendarStore } from '../../stores/calendar'
 import { useThemeStore } from '../../stores/theme'
@@ -143,7 +143,9 @@ const switcherPayloads = [
 }
 
 .date {
-  font-size: 24px;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 22px;
   color: var(--tx-primary);
 }
 

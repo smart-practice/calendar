@@ -76,7 +76,7 @@ const onCell = (item: CalendarCell) => {
   color: var(--tx-secondary);
   font-weight: 500;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 11px;
 
   & > * {
     text-align: center;
@@ -84,7 +84,7 @@ const onCell = (item: CalendarCell) => {
 }
 
 .cell {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .row {

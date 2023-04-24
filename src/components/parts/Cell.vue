@@ -2,9 +2,9 @@
 import { CalendarEvent } from '../../types/event'
 import EventLabel from './EventLabel.vue'
 import { useEventsStore } from '../../stores/events'
-import bellIcon from '../../assets/bell.svg'
-import markIcon from '../../assets/mark.svg'
-import clockIcon from '../../assets/clock.svg'
+import bellIcon from '../../assets/icons/bell.svg'
+import markIcon from '../../assets/icons/mark.svg'
+import clockIcon from '../../assets/icons/clock.svg'
 
 const { view, longNum } = withDefaults(
   defineProps<{

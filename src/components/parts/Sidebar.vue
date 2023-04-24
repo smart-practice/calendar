@@ -29,6 +29,7 @@ const today: CreateEvent = {
 .sidebar {
   padding: 25px;
   border-right: 1px solid var(--hairline);
+  width: 256px;
 }
 
 .btn {

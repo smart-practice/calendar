@@ -23,8 +23,9 @@ const { view } = withDefaults(
   padding: 8px 16px;
   border: 0;
   border-radius: 3px;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
 }
 
 .default {
@@ -39,7 +40,7 @@ const { view } = withDefaults(
 .outlined {
   border: 1px solid var(--hairline);
   background-color: transparent;
-  color: var(--tx-primary);
+  color: var(--tx-middle);
 
   &:hover {
     background-color: var(--bg-secondary);
