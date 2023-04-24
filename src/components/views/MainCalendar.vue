@@ -29,7 +29,7 @@ const onCell = (item: CalendarCell) => {
     class="month"
     :class="{ active: calendarStore.isSwiping }"
     id="main-calendar"
-    @wheel.prevent="onWheel"
+    @wheel.passive="onWheel"
   >
     <div role="row" class="weekday">
       <div v-for="day in weekdays" :key="day">{{ day }}</div>

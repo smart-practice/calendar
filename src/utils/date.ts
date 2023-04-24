@@ -64,7 +64,6 @@ export function markToday(items: CalendarCell[]) {
   const day = today.getDate()
 
   return items.map(i => {
-    console.log(i.year === year && i.month === month && i.num === day)
     if (i.year === year && i.month === month && i.num === day) {
       return { ...i, isToday: true }
     }
@@ -113,8 +112,6 @@ export function dayCellsByDate(date: Date, events: CalendarEvent[]) {
         num: i,
         month,
       }
-
-      console.log(payload)
 
       if (i === 1) {
         payload.child = `${months[month].substring(0, 3)} ${i}`

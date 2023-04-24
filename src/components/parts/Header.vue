@@ -9,6 +9,7 @@ import Button from '../UI/Button.vue'
 import Logo from './Logo.vue'
 import { useAppStore } from '../../stores/app'
 import Switcher from '../UI/Switcher.vue'
+import Select from '../UI/Select.vue'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()
@@ -57,6 +58,7 @@ const switcherPayloads = [
     </div>
     <div class="date">{{ dateTitle }}</div>
     <div class="right">
+      <Select />
       <Switcher
         :checked="themeStore.theme === 'dark'"
         :icons="switcherPayloads"
@@ -150,6 +152,9 @@ const switcherPayloads = [
 }
 
 .right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin-left: auto;
 }
 </style>

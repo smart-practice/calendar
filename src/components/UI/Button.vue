@@ -20,7 +20,7 @@ const { view } = withDefaults(
 
 <style lang="scss" scoped>
 .btn-v {
-  padding: 8px 24px;
+  padding: 8px 16px;
   border: 0;
   border-radius: 3px;
   font-size: 15px;
