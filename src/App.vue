@@ -9,6 +9,7 @@ import MainCalendar from './components/views/MainCalendar.vue'
 import Sidebar from './components/parts/Sidebar.vue'
 import CreateEvent from './components/modals/CreateEvent.vue'
 import InfoEvent from './components/modals/InfoEvent.vue'
+import Months from './components/views/Months.vue'
 
 const themeStore = useThemeStore()
 const appStore = useAppStore()
@@ -17,13 +18,16 @@ onMounted(() => {
   themeStore.initUserTheme()
   appStore.initSidebarOpen()
 })
+
+// TODO: rewrite to '<component :is>'
 </script>
 
 <template>
   <Header />
   <main class="main">
     <Sidebar />
-    <MainCalendar />
+    <MainCalendar v-if="appStore.appView === 'month'" />
+    <Months v-if="appStore.appView === 'year'" />
   </main>
 
   <!-- Modals -->

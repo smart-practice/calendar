@@ -12,6 +12,10 @@ export const useCalendarStore = defineStore('calendar', () => {
 
   const isSwiping = ref(false)
 
+  const incrementYear = () => year.value++
+
+  const decrementYear = () => year.value--
+
   const incrementMonth = () => {
     if (month.value === 11) {
       month.value = 0
@@ -60,6 +64,8 @@ export const useCalendarStore = defineStore('calendar', () => {
     day,
     isSwiping,
     cellDaysOfMonth,
+    incrementYear,
+    decrementYear,
     incrementMonth,
     decrementMonth,
     clickNeighbour,

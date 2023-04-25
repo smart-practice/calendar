@@ -5,4 +5,11 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   base: '/calendar/',
   plugins: [vue()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./src/styles/_mixins.scss";`,
+      },
+    },
+  },
 })

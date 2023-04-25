@@ -1,0 +1,19 @@
+@font-face {
+  font-family: 'Google Sans';
+  src: local('Google Sans Regular'), local('Google-Sans-Regular'),
+  url('../assets/fonts/GoogleSans/GoogleSans-Regular.woff2') format('woff2'),
+  url('../assets/fonts/GoogleSans/GoogleSans-Regular.woff') format('woff'),
+  url('../assets/fonts/GoogleSans/GoogleSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Google Sans';
+  src: local('Google Sans Medium'), local('Google-Sans-Medium'),
+  url('../assets/fonts/GoogleSans/GoogleSans-Medium.woff2') format('woff2'),
+  url('../assets/fonts/GoogleSans/GoogleSans-Medium.woff') format('woff'),
+  url('../assets/fonts/GoogleSans/GoogleSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}

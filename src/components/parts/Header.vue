@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
-import arrowSprite from '../../assets/[arrows].svg'
-import globalSprite from '../../assets/[global].svg'
+import arrowSprite from '../../assets/sprites/[arrows].svg'
+import globalSprite from '../../assets/sprites/[global].svg'
 import { months } from '../../resources/date'
 import { useCalendarStore } from '../../stores/calendar'
 import { useThemeStore } from '../../stores/theme'
@@ -9,19 +9,52 @@ import Button from '../UI/Button.vue'
 import Logo from './Logo.vue'
 import { useAppStore } from '../../stores/app'
 import Switcher from '../UI/Switcher.vue'
+import Select from '../UI/Select.vue'
+import { AppViewOptions } from '../../types/app'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()
 const appStore = useAppStore()
 
-const dateTitle = computed(
-  () => `${months[calendarStore.month]} ${calendarStore.year}`,
-)
+const dateTitle = computed(() => {
+  if (appStore.appView === 'year') {
+    return calendarStore.year
+  }
+
+  if (appStore.appView === 'month') {
+    return `${months[calendarStore.month]} ${calendarStore.year}`
+  }
+})
 
 const switcherPayloads = [
   { sprite: globalSprite, id: 'moon', mode: true },
   { sprite: globalSprite, id: 'sun', mode: false },
 ]
+
+const viewsOptions: AppViewOptions = [
+  { title: 'Month', value: 'month' },
+  { title: 'Year', value: 'year' },
+]
+
+const prev = () => {
+  if (appStore.appView === 'year') {
+    calendarStore.decrementYear()
+  }
+
+  if (appStore.appView === 'month') {
+    calendarStore.decrementMonth()
+  }
+}
+
+const next = () => {
+  if (appStore.appView === 'year') {
+    calendarStore.incrementYear()
+  }
+
+  if (appStore.appView === 'month') {
+    calendarStore.incrementMonth()
+  }
+}
 </script>
 
 <template>
@@ -36,20 +69,12 @@ const switcherPayloads = [
       <Button view="outlined" class="today" @click="calendarStore.resetDay">
         Today
       </Button>
-      <button
-        class="btn"
-        @click="calendarStore.decrementMonth"
-        title="Previous month"
-      >
+      <button class="btn" @click="prev" title="Previous month">
         <svg class="svg">
           <use :href="`${arrowSprite}#default`" />
         </svg>
       </button>
-      <button
-        class="btn"
-        @click="calendarStore.incrementMonth"
-        title="Next month"
-      >
+      <button class="btn" @click="next" title="Next month">
         <svg :class="{ svg: true, rotate: true }">
           <use :href="`${arrowSprite}#default`" />
         </svg>
@@ -57,6 +82,11 @@ const switcherPayloads = [
     </div>
     <div class="date">{{ dateTitle }}</div>
     <div class="right">
+      <Select
+        :current="appStore.appView"
+        :options="viewsOptions"
+        @change="v => appStore.setAppView(v)"
+      />
       <Switcher
         :checked="themeStore.theme === 'dark'"
         :icons="switcherPayloads"
@@ -141,8 +171,10 @@ const switcherPayloads = [
 }
 
 .date {
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 22px;
   color: var(--tx-primary);
+  @include GoogleFont();
 }
 
 .rotate {
@@ -150,6 +182,9 @@ const switcherPayloads = [
 }
 
 .right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
   margin-left: auto;
 }
 </style>

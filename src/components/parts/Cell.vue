@@ -2,9 +2,9 @@
 import { CalendarEvent } from '../../types/event'
 import EventLabel from './EventLabel.vue'
 import { useEventsStore } from '../../stores/events'
-import bellIcon from '../../assets/bell.svg'
-import markIcon from '../../assets/mark.svg'
-import clockIcon from '../../assets/clock.svg'
+import bellIcon from '../../assets/icons/bell.svg'
+import markIcon from '../../assets/icons/mark.svg'
+import clockIcon from '../../assets/icons/clock.svg'
 
 const { view, longNum } = withDefaults(
   defineProps<{
@@ -56,7 +56,7 @@ const iconByType = (type: CalendarEvent['type']) => {
       <slot />
     </div>
     <div class="body">
-      <div v-if="events?.length > 0" class="events">
+      <div v-if="events.length > 0" class="events">
         <EventLabel
           v-for="event in events"
           :view="event.type"

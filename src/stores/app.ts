@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { AppView } from '../types/app'
 
 type SidebarOpenType = '0' | '1'
 
@@ -7,6 +8,11 @@ const SIDEBAR_OPEN = 'sidebar-open'
 
 export const useAppStore = defineStore('app', () => {
   const isSidebarOpen = ref<SidebarOpenType>()
+  const appView = ref<AppView>('month')
+
+  const setAppView = (val: AppView) => {
+    appView.value = val
+  }
 
   const getSidebarOpen = () => localStorage.getItem(SIDEBAR_OPEN)
 
@@ -30,6 +36,8 @@ export const useAppStore = defineStore('app', () => {
   }
 
   return {
+    appView,
+    setAppView,
     isSidebarOpen,
     toggleSidebarOpen,
     initSidebarOpen,

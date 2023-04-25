@@ -64,7 +64,6 @@ export function markToday(items: CalendarCell[]) {
   const day = today.getDate()
 
   return items.map(i => {
-    console.log(i.year === year && i.month === month && i.num === day)
     if (i.year === year && i.month === month && i.num === day) {
       return { ...i, isToday: true }
     }
@@ -72,12 +71,12 @@ export function markToday(items: CalendarCell[]) {
   })
 }
 
-export function dayCellsByDate(date: Date, events: CalendarEvent[]) {
+export function dayCellsByDate(date: Date, events?: CalendarEvent[]) {
   const ROWS = 6
   const COLS = 7
   const CELLS = ROWS * COLS
 
-  const res: CalendarCell[] = []
+  let res: CalendarCell[] = []
 
   const idxFirstWeekend = date.getDay()
 
@@ -114,8 +113,6 @@ export function dayCellsByDate(date: Date, events: CalendarEvent[]) {
         month,
       }
 
-      console.log(payload)
-
       if (i === 1) {
         payload.child = `${months[month].substring(0, 3)} ${i}`
       }
@@ -148,8 +145,17 @@ export function dayCellsByDate(date: Date, events: CalendarEvent[]) {
     }
   }
 
-  const cellWithMarkedToday = markToday(res)
-  const cellsWithEvents = dayCellsWithEvents(cellWithMarkedToday, events)
+  res = markToday(res)
 
-  return chunkArrayByStep(cellsWithEvents, COLS)
+  if (events) {
+    res = dayCellsWithEvents(res, events)
+  }
+
+  return chunkArrayByStep(res, COLS)
+}
+
+export function yearMonths(year: number) {
+  return new Array(12).fill(null).map((_, idx) => {
+    return dayCellsByDate(new Date(year, idx))
+  })
 }
