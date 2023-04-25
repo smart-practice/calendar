@@ -64,10 +64,9 @@ const props = defineProps<{
 .item {
   cursor: pointer;
   padding: 5px 16px;
-
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
+  font-size: 14px;
+  font-weight: 500;
+  @include GoogleFont();
 
   &:hover {
     background-color: var(--bg-secondary);

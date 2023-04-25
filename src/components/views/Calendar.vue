@@ -48,7 +48,7 @@ const props = defineProps<{
 .title {
   font-size: 14px;
   margin-left: 10px;
-  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  @include GoogleFont();
 }
 
 .weekday {

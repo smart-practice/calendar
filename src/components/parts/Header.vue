@@ -171,10 +171,10 @@ const next = () => {
 }
 
 .date {
-  font-family: 'Google Sans', Roboto, Arial, sans-serif;
   font-weight: 400;
   font-size: 22px;
   color: var(--tx-primary);
+  @include GoogleFont();
 }
 
 .rotate {
@@ -184,7 +184,7 @@ const next = () => {
 .right {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   margin-left: auto;
 }
 </style>

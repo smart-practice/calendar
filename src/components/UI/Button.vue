@@ -25,8 +25,8 @@ const { view } = withDefaults(
   border-radius: 3px;
   font-size: 14px;
   font-weight: 500;
-  font-family: 'Google Sans', Roboto, Arial, sans-serif;
   text-transform: capitalize;
+  @include GoogleFont();
 }
 
 .default {

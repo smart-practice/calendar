@@ -43,6 +43,7 @@ const isChecked = computed(() => {
   letter-spacing: 0.25px;
   font-weight: 500;
   text-transform: capitalize;
+  @include GoogleFont();
 
   &:hover {
     background-color: var(--bg-secondary);
