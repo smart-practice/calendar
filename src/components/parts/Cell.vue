@@ -56,7 +56,7 @@ const iconByType = (type: CalendarEvent['type']) => {
       <slot />
     </div>
     <div class="body">
-      <div v-if="events?.length > 0" class="events">
+      <div v-if="events.length > 0" class="events">
         <EventLabel
           v-for="event in events"
           :view="event.type"

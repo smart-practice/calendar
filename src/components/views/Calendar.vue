@@ -1,25 +1,27 @@
 <script lang="ts" setup>
 import { useCalendarStore } from '../../stores/calendar'
-import { months, weekdays } from '../../resources/date'
+import { weekdays } from '../../resources/date'
 import Cell from '../parts/Cell.vue'
+import { CalendarCell } from '../../types/date'
+
 const store = useCalendarStore()
 
-defineProps<{
-  isNeighbour?: boolean
-  isToday?: boolean
+const props = defineProps<{
+  title?: string
+  cellsMatrix: Array<CalendarCell[]>
 }>()
 </script>
 
 <template>
-  <div class="mini-calendar">
-    <span class="title">{{ months[store.month] }} {{ store.year }}</span>
+  <div class="calendar">
+    <span v-if="props.title" class="title">
+      {{ title }}
+    </span>
     <div class="weekday">
-      <div v-for="[day] in weekdays" :key="day" role="columnheader">
-        {{ day }}
-      </div>
+      <div v-for="[day] in weekdays" :key="day">{{ day }}</div>
     </div>
     <div role="grid" class="wrapper">
-      <div v-for="(row, index) in store.cellDaysOfMonth" role="row" class="row">
+      <div v-for="(row, index) in props.cellsMatrix" role="row" class="row">
         <Cell
           class="cell"
           v-for="item in row"
@@ -38,7 +40,7 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-.mini-calendar {
+.calendar {
   color: var(--tx-primary);
   width: 100%;
 }

@@ -3,18 +3,36 @@ import Button from './Button.vue'
 import { ref } from 'vue'
 
 const isOpen = ref(false)
+
+const props = defineProps<{
+  current: string
+  options: Array<{
+    title: string
+    value: string
+  }>
+}>()
 </script>
 
 <template>
   <div class="wrapper">
-    <Button class="select" view="outlined" @click="isOpen = !isOpen"
-      >Month</Button
-    >
+    <Button class="select" view="outlined" @click="isOpen = !isOpen">
+      {{ current }}
+    </Button>
     <div v-show="isOpen" class="body">
       <ul class="list">
-        <li class="item" role="menuitem">Month</li>
-        <li class="item" role="menuitem">Week</li>
-        <li class="item" role="menuitem">Day</li>
+        <li
+          v-for="option in props.options"
+          class="item"
+          role="menuitem"
+          @click="
+            () => {
+              $emit('change', option.value)
+              isOpen = false
+            }
+          "
+        >
+          {{ option.title }}
+        </li>
       </ul>
     </div>
   </div>
