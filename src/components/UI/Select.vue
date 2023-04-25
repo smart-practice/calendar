@@ -11,11 +11,19 @@ const props = defineProps<{
     value: string
   }>
 }>()
+
+const close = () => {
+  isOpen.value = false
+}
+
+const toggle = () => {
+  isOpen.value = !isOpen.value
+}
 </script>
 
 <template>
-  <div class="wrapper">
-    <Button class="select" view="outlined" @click="isOpen = !isOpen">
+  <div class="wrapper" v-click-outside="close">
+    <Button class="select" view="outlined" @click="toggle">
       {{ current }}
     </Button>
     <div v-show="isOpen" class="body">
