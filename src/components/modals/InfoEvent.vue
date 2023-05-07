@@ -34,6 +34,7 @@ const eventsStore = useEventsStore()
     </div>
     <template v-slot:footer>
       <Button
+        v-if="eventsStore.currentInfoEvent!.type !== 'holiday'"
         view="outlined"
         @click="eventsStore.deleteEvent(eventsStore.currentInfoEvent!.id)"
       >
