@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-import Button from './Button.vue'
 import { ref } from 'vue'
+import Button from './Button.vue'
+import SpriteIcon from './SpriteIcon.vue'
+import arrowsSprite from '../../assets/sprites/[arrows].svg'
 
 const isOpen = ref(false)
 
@@ -24,7 +26,8 @@ const toggle = () => {
 <template>
   <div class="wrapper" v-click-outside="close">
     <Button class="select" view="outlined" @click="toggle">
-      {{ current }}
+      <span class="title">{{ current }}</span>
+      <SpriteIcon class="icon" :src="arrowsSprite" name="select" />
     </Button>
     <div v-show="isOpen" class="body">
       <ul class="list">
@@ -49,6 +52,17 @@ const toggle = () => {
 <style lang="scss" scoped>
 .wrapper {
   position: relative;
+}
+
+.select {
+  display: flex;
+}
+
+.icon {
+  margin-left: 5px;
+  margin-right: -5px;
+  padding-bottom: 2px;
+  fill: var(--tx-primary);
 }
 
 .body {
