@@ -11,6 +11,7 @@ import { useAppStore } from '../../stores/app'
 import Switcher from '../UI/Switcher.vue'
 import Select from '../UI/Select.vue'
 import { AppViewOptions } from '../../types/app'
+import SpriteIcon from '../UI/SpriteIcon.vue'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()
@@ -60,9 +61,7 @@ const next = () => {
 <template>
   <header class="header" role="banner">
     <div class="menu" role="button" @click="appStore.toggleSidebarOpen">
-      <svg>
-        <use :href="`${globalSprite}#burger`" />
-      </svg>
+      <SpriteIcon name="burger" draw="fill" size="lg" />
     </div>
     <logo />
     <div class="btn-wrapper">
@@ -70,14 +69,15 @@ const next = () => {
         Today
       </Button>
       <button class="btn" @click="prev" title="Previous month">
-        <svg class="svg">
-          <use :href="`${arrowSprite}#default`" />
-        </svg>
+        <SpriteIcon :src="arrowSprite" name="default" draw="stroke" />
       </button>
       <button class="btn" @click="next" title="Next month">
-        <svg :class="{ svg: true, rotate: true }">
-          <use :href="`${arrowSprite}#default`" />
-        </svg>
+        <SpriteIcon
+          :src="arrowSprite"
+          class="rotate"
+          name="default"
+          draw="stroke"
+        />
       </button>
     </div>
     <div class="date">{{ dateTitle }}</div>

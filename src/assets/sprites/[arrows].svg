@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" display="none">
   <symbol id="default" viewBox="0 0 128 128">
-    <svg viewBox="0 0 128 128" width="128px" xmlns="http://www.w3.org/2000/svg">
+    <svg width="128px">
       <g>
         <line style="fill:none;stroke-width:12;stroke-linecap:square;stroke-miterlimit:10;" x1="87.5" x2="40.5" y1="111" y2="64"/>
         <line style="fill:none;stroke-width:12;stroke-linecap:square;stroke-miterlimit:10;" x1="40.5" x2="87.5" y1="64" y2="17"/>
