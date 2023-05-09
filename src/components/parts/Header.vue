@@ -17,11 +17,11 @@ const themeStore = useThemeStore()
 const appStore = useAppStore()
 
 const dateTitle = computed(() => {
-  if (appStore.appView === 'year') {
+  if (appStore.isYearView) {
     return calendarStore.year
   }
 
-  if (appStore.appView === 'month') {
+  if (appStore.isMonthView) {
     return `${months[calendarStore.month]} ${calendarStore.year}`
   }
 })
@@ -37,21 +37,21 @@ const viewsOptions: AppViewOptions = [
 ]
 
 const prev = () => {
-  if (appStore.appView === 'year') {
+  if (appStore.isYearView) {
     calendarStore.decrementYear()
   }
 
-  if (appStore.appView === 'month') {
+  if (appStore.isMonthView) {
     calendarStore.decrementMonth()
   }
 }
 
 const next = () => {
-  if (appStore.appView === 'year') {
+  if (appStore.isYearView) {
     calendarStore.incrementYear()
   }
 
-  if (appStore.appView === 'month') {
+  if (appStore.isMonthView) {
     calendarStore.incrementMonth()
   }
 }

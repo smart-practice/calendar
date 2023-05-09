@@ -26,8 +26,8 @@ onMounted(() => {
   <Header />
   <main class="main">
     <Sidebar />
-    <MainCalendar v-if="appStore.appView === 'month'" />
-    <Months v-if="appStore.appView === 'year'" />
+    <MainCalendar v-if="appStore.isMonthView" />
+    <Months v-if="appStore.isYearView" />
   </main>
 
   <!-- Modals -->
