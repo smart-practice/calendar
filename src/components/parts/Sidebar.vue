@@ -31,6 +31,7 @@ const calendarTitle = computed(() => {
       Create
     </Button>
     <Calendar
+      class="calendar"
       :title="calendarTitle"
       :cells-matrix="calendarStore.cellDaysOfMonth"
     />
@@ -47,5 +48,9 @@ const calendarTitle = computed(() => {
 
 .btn {
   margin-bottom: 20px;
+}
+
+.calendar {
+  font-size: 10px;
 }
 </style>

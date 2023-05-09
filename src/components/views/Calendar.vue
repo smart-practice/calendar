@@ -46,7 +46,7 @@ const props = defineProps<{
 }
 
 .title {
-  font-size: 14px;
+  font-size: 1.3em;
   margin-left: 10px;
   @include GoogleFont();
 }
@@ -54,7 +54,7 @@ const props = defineProps<{
 .weekday {
   display: flex;
   color: #747474;
-  font-size: 10px;
+  font-size: 1em;
   margin-bottom: 5px;
   font-weight: 500;
 
@@ -67,7 +67,7 @@ const props = defineProps<{
 }
 
 .cell {
-  font-size: 10px;
+  font-size: 1em;
 }
 
 .weekday,

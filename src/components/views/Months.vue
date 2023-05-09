@@ -57,6 +57,7 @@ const calendarStore = useCalendarStore()
 .item {
   width: 256px;
   padding: 0 16px;
+  font-size: 12px;
 }
 
 @media (max-width: 1440px) {
