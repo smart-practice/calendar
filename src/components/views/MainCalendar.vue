@@ -4,6 +4,7 @@ import { weekdays } from '../../resources/date'
 import { useCalendarStore } from '../../stores/calendar'
 import { useEventsStore } from '../../stores/events'
 import { CalendarCell } from '../../types/date'
+import { throttle } from '../../utils/common'
 
 const calendarStore = useCalendarStore()
 const eventsStore = useEventsStore()
@@ -13,6 +14,8 @@ const onWheel = (ev: WheelEvent) => {
     ? calendarStore.decrementMonth()
     : calendarStore.incrementMonth()
 }
+
+const throttledOnWheel = throttle(onWheel)
 
 const onCell = (item: CalendarCell) => {
   eventsStore.openCreateModal({
@@ -29,7 +32,7 @@ const onCell = (item: CalendarCell) => {
     class="month"
     :class="{ active: calendarStore.isSwiping }"
     id="main-calendar"
-    @wheel.passive="onWheel"
+    @wheel.passive="throttledOnWheel"
   >
     <div role="row" class="weekday">
       <div v-for="day in weekdays" :key="day">{{ day }}</div>

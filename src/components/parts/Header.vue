@@ -12,6 +12,7 @@ import Switcher from '../UI/Switcher.vue'
 import Select from '../UI/Select.vue'
 import { AppViewOptions } from '../../types/app'
 import SpriteIcon from '../UI/SpriteIcon.vue'
+import { throttle } from '../../utils/common'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()
@@ -37,7 +38,7 @@ const viewsOptions: AppViewOptions = [
   { title: 'Year', value: 'year' },
 ]
 
-const prev = () => {
+const onPrev = () => {
   if (appStore.isYearView) {
     calendarStore.decrementYear()
   }
@@ -47,7 +48,7 @@ const prev = () => {
   }
 }
 
-const next = () => {
+const onNext = () => {
   if (appStore.isYearView) {
     calendarStore.incrementYear()
   }
@@ -56,6 +57,9 @@ const next = () => {
     calendarStore.incrementMonth()
   }
 }
+
+const throttledOnPrev = throttle(onPrev, 200)
+const throttledOnNext = throttle(onNext, 200)
 </script>
 
 <template>
@@ -68,10 +72,10 @@ const next = () => {
       <Button view="outlined" class="today" @click="calendarStore.resetDay">
         Today
       </Button>
-      <button class="btn" @click="prev" title="Previous month">
+      <button class="btn" @click="throttledOnPrev" title="Previous month">
         <SpriteIcon :src="arrowSprite" name="default" draw="stroke" />
       </button>
-      <button class="btn" @click="next" title="Next month">
+      <button class="btn" @click="throttledOnNext" title="Next month">
         <SpriteIcon
           :src="arrowSprite"
           class="rotate"
