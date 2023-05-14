@@ -17,7 +17,7 @@ const { src, name, draw } = withDefaults(
 </script>
 
 <template>
-  <svg :class="[size, { [draw]: !!draw }]">
+  <svg :class="[size, draw ?? '']">
     <use :href="`${src}#${name}`" />
   </svg>
 </template>
