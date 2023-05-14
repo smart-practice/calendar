@@ -30,7 +30,6 @@ export function nextMonthIdx(date: Date) {
   return date.getMonth() === 11 ? 0 : date.getMonth() + 1
 }
 
-// TODO: Rewrite to reduce
 export function dayCellsWithEvents(
   days: CalendarCell[],
   events: CalendarEvent[],

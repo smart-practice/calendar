@@ -5,8 +5,8 @@ const { src, name, draw } = withDefaults(
   defineProps<{
     src?: any
     name: string
-    draw: 'stroke' | 'fill' | null
-    size: 'lg' | 'md'
+    draw?: 'stroke' | 'fill' | null
+    size?: 'lg' | 'md'
   }>(),
   {
     src: globalSprite,
