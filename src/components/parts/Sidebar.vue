@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import Button from '../UI/Button.vue'
+import { computed } from 'vue'
 import { useAppStore } from '../../stores/app'
 import { useEventsStore } from '../../stores/events'
 import { useCalendarStore } from '../../stores/calendar'
 import { CreateEvent } from '../../types/event'
 import Calendar from '../views/Calendar.vue'
+import Button from '../UI/Button.vue'
 import { months } from '../../resources/date'
-import { computed } from 'vue'
 
 const appStore = useAppStore()
 const eventsStore = useEventsStore()
@@ -31,6 +31,7 @@ const calendarTitle = computed(() => {
       Create
     </Button>
     <Calendar
+      class="calendar"
       :title="calendarTitle"
       :cells-matrix="calendarStore.cellDaysOfMonth"
     />
@@ -47,5 +48,9 @@ const calendarTitle = computed(() => {
 
 .btn {
   margin-bottom: 20px;
+}
+
+.calendar {
+  font-size: 10px;
 }
 </style>

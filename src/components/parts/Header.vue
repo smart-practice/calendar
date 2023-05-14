@@ -11,17 +11,19 @@ import { useAppStore } from '../../stores/app'
 import Switcher from '../UI/Switcher.vue'
 import Select from '../UI/Select.vue'
 import { AppViewOptions } from '../../types/app'
+import SpriteIcon from '../UI/SpriteIcon.vue'
+import { throttle } from '../../utils/common'
 
 const calendarStore = useCalendarStore()
 const themeStore = useThemeStore()
 const appStore = useAppStore()
 
 const dateTitle = computed(() => {
-  if (appStore.appView === 'year') {
+  if (appStore.isYearView) {
     return calendarStore.year
   }
 
-  if (appStore.appView === 'month') {
+  if (appStore.isMonthView) {
     return `${months[calendarStore.month]} ${calendarStore.year}`
   }
 })
@@ -36,48 +38,50 @@ const viewsOptions: AppViewOptions = [
   { title: 'Year', value: 'year' },
 ]
 
-const prev = () => {
-  if (appStore.appView === 'year') {
+const onPrev = () => {
+  if (appStore.isYearView) {
     calendarStore.decrementYear()
   }
 
-  if (appStore.appView === 'month') {
+  if (appStore.isMonthView) {
     calendarStore.decrementMonth()
   }
 }
 
-const next = () => {
-  if (appStore.appView === 'year') {
+const onNext = () => {
+  if (appStore.isYearView) {
     calendarStore.incrementYear()
   }
 
-  if (appStore.appView === 'month') {
+  if (appStore.isMonthView) {
     calendarStore.incrementMonth()
   }
 }
+
+const throttledOnPrev = throttle(onPrev, 200)
+const throttledOnNext = throttle(onNext, 200)
 </script>
 
 <template>
   <header class="header" role="banner">
     <div class="menu" role="button" @click="appStore.toggleSidebarOpen">
-      <svg>
-        <use :href="`${globalSprite}#burger`" />
-      </svg>
+      <SpriteIcon name="burger" draw="fill" size="lg" />
     </div>
     <logo />
     <div class="btn-wrapper">
       <Button view="outlined" class="today" @click="calendarStore.resetDay">
         Today
       </Button>
-      <button class="btn" @click="prev" title="Previous month">
-        <svg class="svg">
-          <use :href="`${arrowSprite}#default`" />
-        </svg>
+      <button class="btn" @click="throttledOnPrev" title="Previous month">
+        <SpriteIcon :src="arrowSprite" name="default" draw="stroke" />
       </button>
-      <button class="btn" @click="next" title="Next month">
-        <svg :class="{ svg: true, rotate: true }">
-          <use :href="`${arrowSprite}#default`" />
-        </svg>
+      <button class="btn" @click="throttledOnNext" title="Next month">
+        <SpriteIcon
+          :src="arrowSprite"
+          class="rotate"
+          name="default"
+          draw="stroke"
+        />
       </button>
     </div>
     <div class="date">{{ dateTitle }}</div>

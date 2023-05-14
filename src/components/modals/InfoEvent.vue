@@ -3,33 +3,27 @@ import { useEventsStore } from '../../stores/events'
 import Modal from '../UI/Modal.vue'
 import Button from '../UI/Button.vue'
 import { dateTitle } from '../../utils/date'
+import { storeToRefs } from 'pinia'
 
 const eventsStore = useEventsStore()
+
+const { currentInfoEvent: info, isInfoModalOpen } = storeToRefs(eventsStore)
 </script>
 
 <template>
-  <Modal
-    :is-open="eventsStore.isInfoModalOpen"
-    @close="eventsStore.closeInfoModal"
-  >
-    <div class="wrapper">
+  <Modal :is-open="isInfoModalOpen" @close="eventsStore.closeInfoModal">
+    <div class="wrapper" v-if="info">
       <div class="head">
-        <div class="marker" :class="eventsStore.currentInfoEvent!.type" />
+        <div class="marker" :class="info.type" />
         <span class="title" role="heading">
-          {{ eventsStore.currentInfoEvent!.title }}
+          {{ info.title }}
         </span>
       </div>
       <p class="desc">
-        {{ eventsStore.currentInfoEvent!.desc }}
+        {{ info.desc }}
       </p>
       <p class="date">
-        {{
-          dateTitle(
-            eventsStore.currentInfoEvent!.year,
-            eventsStore.currentInfoEvent!.month,
-            eventsStore.currentInfoEvent!.day,
-          )
-        }}
+        {{ dateTitle(info.year, info.month, info.day) }}
       </p>
     </div>
     <template v-slot:footer>
