@@ -107,6 +107,10 @@ const iconByType = (type: CalendarEvent['type']) => {
   color: var(--tx-secondary);
 }
 
+.neighbour.today {
+  color: var(--tx-primary);
+}
+
 .body {
   position: relative;
   margin-left: -5px;
